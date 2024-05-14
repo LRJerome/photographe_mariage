@@ -1,0 +1,55 @@
+/*  Mon nuancier de couleur se trouve être /
+    - #EDEDE9
+    _ #D6CCC2
+    _ #F5EBE0 => Body
+    _ #E3D5CA => navbar, footer, ...
+    _ #D5BDAF
+*/
+
+html,
+body {
+  background-color: #f5ebe0;
+  font-family: "Junction", cursive;
+  height: 100%;
+}
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: #d5bdaf; /* Couleur du lien au survol */
+}
+a:active {
+  color: black; /* Couleur du lien lorsqu'il est activé */
+}
+
+
+.copyright {
+  font-family: "Junction", cursive;
+}
+.head_text {
+  background-color: #e3d5ca;
+}
+.F5EBE0 {
+  background-color: #f5ebe0;
+}
+/* input, textarea {
+    background-color: #D5BDAF;
+} */
+/* input:focus, textarea:focus {
+    background-color: white;
+    border-color: #66afe9;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset, 0 0 8px rgba(102,175,233,0.6);
+  }  */
+input,
+textarea {
+  border: 1px solid #000000;
+}
+
+.formulaire {
+  background-color: #f5ebe0;
+}

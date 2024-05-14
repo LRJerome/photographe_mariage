@@ -1,0 +1,48 @@
+{% extends 'themes/base.html.twig' %}
+
+{% block title %}Page d'exemples photo
+{% endblock %}
+
+{% block description %}Voici la page des exemples de photos de mariage
+{% endblock %}
+
+{% block keywords %}exemples, mariage, contact
+{% endblock %}
+
+{% block main %}
+	{# Contenu perso à modifier :  #}
+
+
+	{# <!-- ---------------------------- FORMULAIRE D'INSCRIPTION ----------------------------- --> #}
+
+		<div class="container my-5 border border-dark rounded shadow p-3 head_text  "> <div class="d-flex justify-content-center ">
+
+			<h2 class=" d-inline-block text-center p-2">Inscrivez-vous</h2>
+		</div>
+
+		<form>
+
+			<div
+				class="form-group pt-3 ">
+				{# <!-- pseudo --> #}
+				<label class="form-label m-2" for="login">Pseudo* :</label>
+				<input
+				class="form-control formulaire" type="text" id="login" name="login" placeholder="Choisissez un pseudo">
+				{# <!-- E-MAIL --> #}
+				<label for="email">Entrez votre e-mail*</label>
+				<input type="email" class="form-control  formulaire" id="email" placeholder="Entrez votre email">
+			</div>
+			<div class="form-group pt-3">
+				<label for="password">Mot de passe*</label>
+				<input type="password" class="form-control formulaire" id="password" placeholder="Entrez votre mot de passe">
+			</div>
+			{# <!-- Verification du mot de passe --> #}
+			<label class="form-label m-2" for="password2">Vérification du mot de passe* :</label>
+			<input class="form-control formulaire" type="password" id="password2" name="password2" placeholder="Confirmez votre mot de passe">
+
+			<div class="text-center pt-3">
+				<button type="submit" class="border border-dark btn F5EBE0 btn-block btn-lg">Inscription</button>
+			</div>
+		</form>
+	</div>
+{% endblock %}

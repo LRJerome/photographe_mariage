@@ -26,8 +26,9 @@ a:hover {
 a:active {
   color: black; /* Couleur du lien lorsqu'il est activé */
 }
-
-
+.cgv {
+  font-family:Arial, Helvetica, sans-serif;
+}
 .copyright {
   font-family: "Junction", cursive;
 }

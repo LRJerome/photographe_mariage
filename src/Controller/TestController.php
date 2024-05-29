@@ -30,5 +30,6 @@ class TestController extends AbstractController
     {        
         return $this->render('/pages/mentionslegales.html.twig');
     }
+    
 }
 

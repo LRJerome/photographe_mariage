@@ -1,6 +1,7 @@
 <?php
+namespace App\Controller\Visitor;
 
-namespace App\Controller;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +12,6 @@ class ConnexionController extends AbstractController
     #[Route('/connexion', name: 'app_connexion')]
     public function connexion(): Response
     {
-        return $this->render('pages/connexion.html.twig');
+        return $this->render('pages/visitor/connexion.html.twig');
     }
 }

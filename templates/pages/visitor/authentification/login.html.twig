@@ -1,0 +1,56 @@
+{% extends 'themes/base.html.twig' %}
+
+{% block title %}Page de connexion
+{% endblock %}
+
+{% block description %}Voici la page de connexion des utilisateurs
+{% endblock %}
+
+{% block keywords %}connexion, utilisateurs, mariage, contact, photos
+{% endblock %}
+
+{% block main %}
+
+
+	<title>Connexion</title>
+
+	{% block body %}
+
+		{% for flash_error in app.flashes('verify_email_error') %}
+			<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+		{% endfor %}
+		<div class="container my-5 border border-dark rounded shadow p-3 head_text  ">
+			<div class="d-flex justify-content-center ">
+
+				<h2 class=" d-inline-block text-center p-2">Connectez-vous</h2>
+			</div>
+			<form method="post">
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				<div class="mb-3">
+					<label for="inputEmail">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="formulaire form-control" autocomplete="email" required autofocus>
+				</div>
+				<div class="mb-3">
+					<label for="inputPassword">Mot de passe</label>
+					<input type="password" name="password" id="inputPassword" class="formulaire form-control" autocomplete="current-password" required>
+				</div>
+				<div class="mb-3">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				</div>
+				<div class="mb-3 row align-items-center">
+					<div class="col-md-6 text-center">
+						<button class="border border-dark btn F5EBE0 btn-block btn-lg w-50" type="submit">
+							Connexion
+						</button>
+					</div>
+					<div class="col-md-6 text-center fs-5">
+						<a href="{{path('visitor_authentification_forgot_password_request')}}">Réinitialisation du mot de passe</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	{% endblock %}
+{% endblock %}

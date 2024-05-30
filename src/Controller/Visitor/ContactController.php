@@ -1,5 +1,6 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Visitor;
+
 
 
 
@@ -12,6 +13,6 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function contact(): Response
     {
-        return $this->render('pages/contact.html.twig');
+        return $this->render('pages/visitor/contact.html.twig');
     }
 }

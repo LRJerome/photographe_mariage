@@ -3,14 +3,15 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Validator\Constraints\PasswordStrength;
+use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
 
 class ChangePasswordFormType extends AbstractType
 {
@@ -18,12 +19,7 @@ class ChangePasswordFormType extends AbstractType
     {
         $builder
             ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'options' => [
-                    'attr' => [
-                        'autocomplete' => 'new-password',
-                    ],
-                ],
+                'type' => PasswordType::class,             
                 'first_options' => [
                     'constraints' => [
                         new NotBlank([
@@ -31,19 +27,20 @@ class ChangePasswordFormType extends AbstractType
                         ]),
                         new Length([
                             'min' => 12,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            'max' => 255,
+                            'minMessage' => "Le mot de passe doit contenir un minimum de {{ limit }} caractères!",
+                            'maxMessage' => "Le mot de passe doit contenir un maximum de {{ limit }} caractères!",
                             // max length allowed by Symfony for security reasons
-                            'max' => 4096,
                         ]),
-                        new PasswordStrength(),
+                        new Regex([ 
+                            'pattern'=> '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,}$/',
+                            'match'=> true,
+                            'message'=> "Le mot de passe doit contenir au minimum 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
+                        ]),
                         new NotCompromisedPassword(),
                     ],
-                    'label' => 'New password',
-                ],
-                'second_options' => [
-                    'label' => 'Repeat Password',
-                ],
-                'invalid_message' => 'The password fields must match.',
+                    ],
+                    'invalid_message' => "Le nouveau mot de passe doit être identique à sa confirmation !",
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,

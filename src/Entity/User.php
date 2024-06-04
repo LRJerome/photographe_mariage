@@ -86,7 +86,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     #[ORM\Column]
     private ?string $password = null;
-
+    
+    #[ORM\Column]
+    private bool $isVerified = false;
+    
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
@@ -94,8 +97,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $verifiedAt = null;
 
-    #[ORM\Column]
-    private bool $isVerified = false;
 
     public function __construct()
     {

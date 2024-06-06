@@ -10,10 +10,12 @@
 			{% block title %}{% endblock %}
 		</title>
 
-
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+		
+		{# Font awesome #}
 		<link
 		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+		
 		{# jQuery #}
 		{% block jQuery %}{% endblock %}
 
@@ -26,14 +28,9 @@
 		{# Select2 #}
 		{% block select2 %}{% endblock %}
 
-		{# Font awesome #}
-		<link
-		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-		{# A stylesheet part of Bootstrap 5 #}
+				{# A stylesheet part of Bootstrap 5 #}
 		<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
 
 		<!-- Custom styles for this template -->
 		<link
@@ -42,15 +39,14 @@
 		<link
 		rel="stylesheet" href="{{asset('styles/app.css')}}">
 
-	<!-- Custom styles for this template -->
 	</head>
 	<body>
 
-		<header class="navbar sticky-top head_text flex-md-nowrap shadow" data-bs-theme="dark">
-			<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-dark" href="{{path('app_welcome')}}">j-leroy.fr</a>
+		<header class="navbar sticky-top head_text flex-md-nowrap shadow">
+			<a class="navbar-brand col-md-3 col-lg-2 mx-5 my-2 fs-4" href="{{path('app_welcome')}}">j-leroy.fr</a>
 			<ul class="navbar-nav flex-row d-md-none">
 				<li class="nav-item text-nowrap">
-					<button class="nav-link px-3 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+					<button class="nav-link px-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="fa-solid fa-bars"></i>
 					</button>
 				</li>
@@ -65,7 +61,7 @@
 			<div
 				class="row">
 				<!-- Side bar située sur la gauche -->
-				<div class="sidebar col-md-3 col-lg-2 head_text ">
+				<div class="sidebar col-md-3 col-lg-2 head_text fs-4">
 					<div class="offcanvas-md offcanvas-end head_text" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
 						<div class="offcanvas-header">
 							<h5 class="offcanvas-title" id="sidebarMenuLabel">j-leroy.fr</h5>
@@ -74,70 +70,53 @@
 						<div class="">
 							<div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto justify-content-center">
 								<ul class="nav flex-column ">
-									<li class="nav-item m-auto my-3">
+									<li class="nav-item m-auto my-2">
 										<a class="nav-link d-flex align-items-center gap-2 text-dark" aria-current="page" href="{{ path('admin_home_index') }}">
 											<i class="fa-solid fa-house"></i>
-											Home
+											Tableau de bord
 										</a>
 									</li>
-									<li class="nav-item m-auto my-3">
+									<li class="nav-item m-auto my-2">
 										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-
-											Orders
+											<i class="fa-solid fa-list"></i>
+											Catégories
 										</a>
 									</li>
-									<li class="nav-item m-auto my-3">
+									<li class="nav-item m-auto my-2">
 										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Products
+											<i class="fa-solid fa-basket-shopping"></i>
+											Commandes
 										</a>
 									</li>
-									<li class="nav-item m-auto my-3">
+									<li class="nav-item m-auto my-2">
 										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Customers
+											<i class="fa-regular fa-user"></i>
+											Utilisateurs
 										</a>
 									</li>
-									<li class="nav-item m-auto my-3">
+									<li class="nav-item m-auto my-2">
 										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Reports
+											<i class="fa-regular fa-address-book"></i>
+											Liste de contacts
 										</a>
 									</li>
-									<li class="nav-item m-auto my-3">
-										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Integrations
-										</a>
-									</li>
-								</ul>
-								<ul class="nav flex-column mb-auto ">
-									<li class="nav-item m-auto my-3">
-										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Current month
-										</a>
-									</li>
-									<li class="nav-item m-auto my-3">
-										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Last quarter
-										</a>
-									</li>
-									<li class="nav-item m-auto my-3">
-										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Social engagement
-										</a>
-									</li>
-									<li class="nav-item m-auto my-3">
-										<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-											Year-end sale
-										</a>
-									</li>
+									
 								</ul>
 								<!-- ----------------ligne avant les settings--------------- -->
 								<hr>
 								<!-- ----------------ligne avant les settings--------------- -->
-								<ul class="nav flex-column mb-auto text-center">
-									<li class="nav-item my-3">
-										<a class="navbar-brand col-md-3 col-lg-2  px-3 fs-6 text-dark" href="{{path('app_welcome')}}">Espace utilisateur</a>
+								<ul class="nav flex-column mb-auto text-center fs-4">
+									<li class="nav-item my-2">
+										<i class="fa-solid fa-gears"></i>
+										<a class="navbar-brand col-md-3 col-lg-2  px-3  text-dark" href="#">Parametres</a>
 									</li>
-									<li class="nav-item my-3">
-										<a class="navbar-brand col-md-3 col-lg-2  px-3 fs-6 text-dark" href="{{ path('app_logout') }}">Déconnexion</a>
+									<li class="nav-item my-2">
+										<i class="fa-solid fa-house"></i>
+										<a class="navbar-brand col-md-3 col-lg-2  px-3  text-dark" href="{{path('app_welcome')}}">Espace utilisateur</a>
+									</li>
+									<li class="nav-item my-2">
+									<i class="fa-solid fa-user-slash"></i>
+										<a class="navbar-brand col-md-3 col-lg-2  px-3  text-dark" href="{{ path('app_logout') }}">Déconnexion</a>
 									</li>
 								</ul>
 							</div>

@@ -1,1 +1,12 @@
 {% extends "themes/base_admin.html.twig" %}
+{% block title %}Espace d'administration
+{% endblock %}
+{% block description %}Espace d'administration
+{% endblock %}
+
+{% block main %}
+	<div class="fs-4">
+		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Bienvenu sur votre espace administrateur,
+			{{app.user.firstName}}
+			!</h2>
+	{% endblock %}

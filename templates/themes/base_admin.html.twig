@@ -2,13 +2,13 @@
 <html lang="fr" data-bs-theme="auto">
 	<head>
 		<meta charset="utf-8">
-		<meta
-		name="viewport" content="width=device-width, initial-scale=1">
-		{# <meta name="description" content="{{% block description %}{% endblock %}}"> #}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="{% block description %}{% endblock %} - j-leroy ">
 		<meta name="author" content="j-leroy">
-		<meta
-		name="generator" content="">
-		{# <title>{{% block title %}{% endblock %}}</title> #}
+		<meta name="generator" content="">
+		<title>
+			{% block title %}{% endblock %}
+		</title>
 
 
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -39,9 +39,10 @@
 		<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 		{# Ma propre feuille de styles #}
-		<link rel="stylesheet" href="{{asset('styles/app.css')}}">
-		
-		<!-- Custom styles for this template -->
+		<link
+		rel="stylesheet" href="{{asset('styles/app.css')}}">
+
+	<!-- Custom styles for this template -->
 	</head>
 	<body>
 
@@ -58,9 +59,9 @@
 			<div id="navbarSearch" class="navbar-search w-100 collapse">
 				<input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
 			</div>
-	
+
 		</header>
-			<div class="container-fluid">
+		<div class="container-fluid">
 			<div
 				class="row">
 				<!-- Side bar située sur la gauche -->
@@ -74,7 +75,7 @@
 							<div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto justify-content-center">
 								<ul class="nav flex-column ">
 									<li class="nav-item m-auto my-3">
-										<a class="nav-link d-flex align-items-center gap-2 text-dark" aria-current="page" href="#">
+										<a class="nav-link d-flex align-items-center gap-2 text-dark" aria-current="page" href="{{ path('admin_home_index') }}">
 											<i class="fa-solid fa-house"></i>
 											Home
 										</a>
@@ -143,15 +144,15 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-md-9 col-lg-10">
+					<main>
+						{% block main %}{% endblock %}
+					</main>
+				</div>
+				
 
-				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-					<div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mt-3">
-						<h2 class="head_text text-center p-3 mx-auto border border-dark rounded shadow fs-1">Bienvenu sur votre espace administrateur !</h2>
-						{# {{app.user.firstName}} #}
-					</div>
-					<!-- --------------- boutons en dessous du titre ---------------------- -->
-					<canvas class="w-75" height="300"></canvas>
-				</main>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+			</body>
+		</html>
 	</body>
 </html>

@@ -1,0 +1,36 @@
+{% extends "themes/base_admin.html.twig" %}
+{% block title %}Nouveau mariage
+{% endblock %}
+{% block description %}Nouveau mariage
+{% endblock %}
+
+
+{% block main %}
+	<div class="fs-4">
+		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Ajouter un mariage</h2>
+	</div>
+	<div class="container my-5 border border-dark rounded shadow p-3 head_text ">
+    <div class="d-flex justify-content-center ">
+
+				<h2 class=" d-inline-block text-center p-2">Ajout de nouveaux mariages</h2>
+			</div>
+		<div class="row">
+
+			<div class="col-md-8 col-lg-6 mx-auto">
+				{{form_start(form)}}
+				<div class="mb-3">
+					<label for="category_form_name"> Nom <span class="text-danger">*</span></label>
+					{{form_widget(form.name, {'attr':{'class':'formulaire form-control','autofocus':'autofocus'}})}}
+				</div>
+				<div class="mb-3">
+					<label for="category_form_description"> Description </label>
+					{{form_widget(form.description, {'attr':{'class':'formulaire form-control'}})}}
+				</div>
+				<div class="mb-3 text-center ">
+					<input type="submit" class="border border-dark btn F5EBE0 btn-block btn-lg" value="Créer">
+				</div>
+				{{form_end(form)}}
+			</div>
+		</div>
+	</div>
+{% endblock %}

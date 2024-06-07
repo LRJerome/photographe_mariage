@@ -1,0 +1,15 @@
+{% extends "themes/base_admin.html.twig" %}
+{% block title %}liste  des categories
+{% endblock %}
+{% block description %}Espace d'administration des categories
+{% endblock %}
+
+
+{% block main %}
+	<div class="fs-4">
+		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Listes des catégories!</h2>
+	</div>
+	<div class="d-flex justify-content-end align-items-center my-1 p-5">
+		<a href="{{path('admin_category_create')}}" class="border border-dark btn F5EBE0 btn-block btn-lg">ajout d'un mariage</a>
+	</div>
+{% endblock %}

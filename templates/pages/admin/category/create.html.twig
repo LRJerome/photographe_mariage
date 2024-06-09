@@ -20,14 +20,16 @@
 				{{form_start(form)}}
 				<div class="mb-3">
 					<label for="category_form_name"> Nom <span class="text-danger">*</span></label>
+					<div class="text-danger">{{form_errors(form.name)}}</div>
 					{{form_widget(form.name, {'attr':{'class':'formulaire form-control','autofocus':'autofocus'}})}}
 				</div>
 				<div class="mb-3">
 					<label for="category_form_description"> Description </label>
-					{{form_widget(form.description, {'attr':{'class':'formulaire form-control'}})}}
+					<div class="text-danger">{{form_errors(form.description)}}</div>
+					{{form_widget(form.description, {'attr':{'class':'formulaire form-control', 'rows':'10'}})}}
 				</div>
 				<div class="mb-3 text-center ">
-					<input type="submit" class="border border-dark btn F5EBE0 btn-block btn-lg" value="Créer">
+					<input formnovalidate type="submit" class="border border-dark btn F5EBE0 btn-block btn-lg" value="Créer">
 				</div>
 				{{form_end(form)}}
 			</div>

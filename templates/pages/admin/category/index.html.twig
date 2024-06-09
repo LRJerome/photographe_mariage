@@ -7,11 +7,50 @@
 
 {% block main %}
 	<div class="fs-4">
-		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Listes des catégories!</h2>
-		
+		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow ">Listes des catégories!</h2>
+		{% include 'components/_alert.html.twig' %}
 
 	</div>
 	<div class="d-flex justify-content-end align-items-center my-1 p-5">
 		<a href="{{path('admin_category_create')}}" class="border border-dark btn head_text btn-block btn-lg">Ajouter un mariage</a>
+	</div>
+
+
+	<div class="table-responsive">
+		<table class=" table table-striped table-hover table-borderer text-center border border-dark  ">
+			<thead class="table-dark">
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Description</th>
+					<th>Créé le</th>
+					<th>Modifié le</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categories %}
+					<tr>
+						<td>{{category.id}}</td>
+						<td>{{category.name}}</td>
+						<td>{{category.description ?? '...'}}</td>
+						<td>{{category.createdAt | format_date}}
+							le</td>
+						<td>{{category.updatedAt | format_date}}
+							le</td>
+						<td>
+							<a href="{{path('admin_category_edit',{'id':category.id})}}" class="border border-dark btn head_text btn-block btn-sm">Modifier</a>
+							<form class="d-inline" method="POST" action="{{path('admin_category_delete', {'id':category.id})}}>
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="hidden" name="crsf_token" value="{{csrf_token('delete_category_'~category.id)}}">
+								<input type="submit" class="border border-dark btn bg-danger btn-block btn-sm" value="supprimer" onclick="return confirm('Confirmer la suppression?')">
+							</form>
+
+						</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
 	</div>
 {% endblock %}

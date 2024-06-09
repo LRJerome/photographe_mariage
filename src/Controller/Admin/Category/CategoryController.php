@@ -1,8 +1,10 @@
 <?php
 namespace App\Controller\Admin\Category;
 
+use DateTimeImmutable;
 use App\Entity\Category;
 use App\Form\CategoryFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,6 +13,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin')]
 class CategoryController extends AbstractController
 {
+    public function __construct(private EntityManagerInterface $em)
+    {
+        
+    }
+
+
     #[Route('/category/list', name: 'admin_category_index',methods:['GET'])]
     public function index(): Response
     {
@@ -26,7 +34,16 @@ class CategoryController extends AbstractController
         $form ->handleRequest($request);
 
         if( $form->isSubmitted() && $form->isValid()){
-            
+
+            $category -> setCreatedAt(new DateTimeImmutable());
+            $category -> setUpdatedAt(new DateTimeImmutable());
+
+            $this -> em -> persist($category);
+            $this -> em ->flush();    
+
+            $this -> addFlash ("success", "La catégorie a ete ajoutée avec succès.");
+
+            return $this -> redirectToRoute("admin_category_index");
         }
 
         return $this->render('pages/admin/category/create.html.twig', [

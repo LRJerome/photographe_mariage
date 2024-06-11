@@ -74,19 +74,25 @@ class CategoryController extends AbstractController
             "form" => $form->createView()
         ]);
     }
-    #[Route('/category/{id<\d+>}/delete', name: 'admin_category_delete',methods:['DELETE'])]
-    public function delete(Category $category, Request $request): Response
-    {
-        if($this->isCsrfTokenValid("delete_category_" . $category->getId(), $request->request->get('crsf_token')) )
-        {
-            $this->em->remove($category);
-            $this->em->flush();
-            
-            $this -> addFlash ("success", "Le  mariage à modifiée supprimée.");
-            
-        }
-        return $this -> redirectToRoute("admin_category_index");
+    #[Route('/category/{id<\d+>}/delete', name: 'admin_category_delete', methods: ['POST'])]
+public function delete(Category $category, Request $request): Response
+{
+    // Vérifier si l'objet Category est correctement récupéré -> rien!
+    var_dump($category);
 
-        
+    if ($this->isCsrfTokenValid("delete_category_" . $category->getId(), $request->request->get('csrf_token'))) {
+        // vérifier si le jeton CSRF est récupéré-> rien!
+        var_dump($request->request->get('csrf_token'));
+
+        $this->em->remove($category);
+        $this->em->flush();
+
+        $this->addFlash("success", "La catégorie a été supprimée.");
+    } else {
+        // vérifier si le jeton CSRF est pas valide ->rien!
+        var_dump('Jeton CSRF invalide');
     }
+
+    return $this->redirectToRoute("admin_category_index");
+}
 }

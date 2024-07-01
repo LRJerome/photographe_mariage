@@ -6,33 +6,56 @@
 
 
 {% block main %}
-	<div class="fs-4">
-		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Ajouter un mariage</h2>
+<div class="fs-4">
+	<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Ajouter un mariage</h2>
+</div>
+<div class="container my-5 border border-dark rounded shadow p-3 head_text ">
+	<div class="d-flex justify-content-center ">
+
+		<h2 class=" d-inline-block text-center p-2">Ajout de nouveaux mariages</h2>
 	</div>
-	<div class="container my-5 border border-dark rounded shadow p-3 head_text ">
-    <div class="d-flex justify-content-center ">
+	<div class="row">
 
-				<h2 class=" d-inline-block text-center p-2">Ajout de nouveaux mariages</h2>
-			</div>
-		<div class="row">
+		<div
+			class="col-md-8 col-lg-6 mx-auto">
+			{# ---------------debut modif------------------------- #}
 
-			<div class="col-md-8 col-lg-6 mx-auto">
-				{{form_start(form)}}
+
+{{form_start(form)}}
 				<div class="mb-3">
-					<label for="category_form_name"> Nom <span class="text-danger">*</span></label>
+					<label for="category_form_name">
+						Nom
+						<span class="text-danger">*</span>
+					</label>
 					<div class="text-danger">{{form_errors(form.name)}}</div>
 					{{form_widget(form.name, {'attr':{'class':'formulaire form-control','autofocus':'autofocus'}})}}
 				</div>
 				<div class="mb-3">
-					<label for="category_form_description"> Description </label>
+					<label for="category_form_description">
+						Description
+					</label>
 					<div class="text-danger">{{form_errors(form.description)}}</div>
 					{{form_widget(form.description, {'attr':{'class':'formulaire form-control', 'rows':'10'}})}}
 				</div>
-				<div class="mb-3 text-center ">
-					<input formnovalidate type="submit" class="border border-dark btn F5EBE0 btn-block btn-lg" value="Créer">
+				<div class="mb-3">
+					<label for="category_form_photos">
+						Ajouter une ou des photos
+					</label>
+					<div class="text-danger">{{form_errors(form.description)}}</div>
+					<div id="category_form_photos">
+						{{form_row(form.imageFiles, {'attr':{'class':'formulaire form-control', 'rows':'10'}})}}
+						{# <button type="button" class="btn btn-primary mt-2" id="add_photo_button">Ajouter une image</button> #}
+					</div>
+				</div>
+				<div class="mb-3 d-flex justify-content-between">
+					<input formnovalidate type="submit" class="border border-dark btn F5EBE0 btn-block btn-lg mx-5" value="Créer">
+					<a href="{{ path('admin_category_index') }}" class="border border-dark btn F5EBE0 btn-block btn-lg mx-5">Annuler</a>
 				</div>
 				{{form_end(form)}}
-			</div>
+
+
+			{# ---------------debut modif------------------------- #}
 		</div>
 	</div>
-{% endblock %}
+</div>
+{% endblock main %}

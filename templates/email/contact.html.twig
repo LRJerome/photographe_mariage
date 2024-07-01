@@ -1,0 +1,16 @@
+<h2>Bonjour Jérôme</h2>
+
+<p>Vous avez reçu un message de {{contact_first_name}} {{contact_last_name}}, depuis votre site internet.</p>
+<p>Voici ses coordonnées : </p>
+<ul>
+<li> <strong>Email</strong> : {{contact_email}}</li> 
+{% if contact_phone is not empty %}
+<li><strong>Phone</strong> : {{contact_phone}}</1i>
+{% endif %}
+</ul>
+{% if contact_phone is empty %}
+<p>{{contact_first_name|capitalize}} n'a pas laissé de numéro de téléphone.</p>
+{% endif %}
+<p><u>Voici le message</u>: </p>
+<pre>{{ message|escape }}</pre>
+

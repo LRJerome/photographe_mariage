@@ -1,4 +1,4 @@
-/*  Mon nuancier de couleur se trouve être /
+/*  Mon nuancier de couleur se trouve être : /
     - #EDEDE9
     _ #D6CCC2
     _ #F5EBE0 => Body
@@ -8,52 +8,201 @@
 
 html,
 body {
-  background-color: #f5ebe0;
-  font-family: "Junction", cursive;
-  height: 100%;
+  background-color: #f5ebe0;      /* Définit la couleur de fond pour html et body */
+  font-family: "Junction", cursive; /* Définit la police principale */
+  height: 100%;                   /* Assure que html et body occupent 100% de la hauteur */
 }
+
 body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: grid;                    /* Utilise un layout en grille pour le body */
+  grid-template-rows: auto 1fr auto; /* Définit 3 rangées : en-tête, contenu principal, pied de page */
 }
+
 a {
-  text-decoration: none;
-  color: black;
+  text-decoration: none;          /* Supprime le soulignement par défaut des liens */
+  color: black;                 /* Définit la couleur des liens en noir */
 }
+
 a:hover {
-  color: #d5bdaf; /* Couleur du lien au survol */
+  color: #d5bdaf;               /* Change la couleur du lien au survol */
 }
+
 a:active {
-  color: black; /* Couleur du lien lorsqu'il est activé */
+  color: black;                 /* Définit la couleur du lien lorsqu'il est activé (cliqué) */
 }
+
 .cgv {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; /* Police spécifique pour la classe cgv */
 }
+
 .copyright {
-  font-family: "Junction", cursive;
+  font-family: "Junction", cursive; /* Police spécifique pour la classe copyright */
 }
+
 .head_text {
-  background-color: #e3d5ca;
+  background-color: #e3d5ca;    /* Couleur de fond pour la classe head_text */
 }
+
 .F5EBE0 {
-  background-color: #f5ebe0;
+  background-color: #f5ebe0;    /* Couleur de fond pour la classe F5EBE0 */
 }
-#table-head-text{
-  background-color: #e3d5ca;
-}
-/* input, textarea {
-    background-color: #D5BDAF;
-} */
-/* input:focus, textarea:focus {
-    background-color: white;
-    border-color: #66afe9;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset, 0 0 8px rgba(102,175,233,0.6);
-  }  */
+
 input,
 textarea {
-  border: 1px solid #000000;
+  border: 1px solid #000000;    /* Ajoute une bordure noire aux champs de saisie et zones de texte */
 }
 
 .formulaire {
-  background-color: #f5ebe0;
+  background-color: #f5ebe0;    /* Couleur de fond pour la classe formulaire */
+}
+
+.table {
+  --bs-table-bg: none !important; /* Supprime la couleur de fond par défaut des tables Bootstrap */
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td,
+.table-striped > tbody > tr:nth-of-type(odd) > th {
+  --bs-table-accent-bg: transparent; /* Supprime la couleur de fond alternée des lignes impaires */
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  --bs-table-hover-bg: transparent; /* Supprime la couleur de fond au survol des lignes */
+}
+
+/* Styles pour la liste non ordonnée dans #singleGallery */
+#singleGallery ul {
+  display: flex;                /* Utilise un conteneur flexible */
+  flex-wrap: wrap;              /* Permet aux éléments de passer à la ligne si nécessaire */
+  justify-content: center;      /* Centre les éléments horizontalement */
+  height: auto;                 /* Assure que la hauteur est automatique */
+}
+
+/* Styles pour les éléments de liste dans #singleGallery */
+#singleGallery li {
+  display: flex;                /* Utilise un conteneur flexible pour chaque élément li */
+  justify-content: center;      /* Centre le contenu horizontalement dans chaque li */
+  align-items: center;          /* Centre le contenu verticalement dans chaque li */
+}
+
+/* Styles pour la modal (fenêtre pop-up) */
+.modal_img {
+  display: none;                /* Cache la modal par défaut */
+  position: fixed;              /* Fixe la position de la modal par rapport à la fenêtre du navigateur */
+  z-index: 900;                /* Assure que la modal est au-dessus des autres éléments */
+  padding-top: 100px;           /* Ajoute un espace en haut de la modal */
+  left: 0;                      /* Aligne la modal à gauche de la fenêtre */
+  top: 0;                       /* Aligne la modal en haut de la fenêtre */
+  width: 100%;                  /* Fait occuper toute la largeur de la fenêtre à la modal */
+  height: 100%;                 /* Fait occuper toute la hauteur de la fenêtre à la modal */
+  overflow: auto;             /* Cache tout débordement */
+  background-color: rgba(0, 0, 0, 0.9); /* Fond semi-transparent noir */
+}
+
+/* Styles pour le contenu de la modal */
+
+.modal_img .modal-content {
+  z-index: 980; /* Place l'élément au-dessus des autres éléments avec un z-index inférieur */
+  position: relative;            /* Assure que les éléments enfants positionnés absolument sont relatifs à cet élément */
+  top: 50%;                      /*Place le haut de l'image à 50% de la hauteur de la modal */
+  left: 50%;                     /*Place la gauche de l'image à 50% de la largeur de la modal */
+  transform: translate(-50%, -50%);  /*Centre l'image parfaitement */
+  max-width: 90%;                /*Limite la largeur maximale à 90% de la modal */
+  max-height: 90%;               /*Limite la hauteur maximale à 90% de la modal */
+  width: auto;                   /*Largeur automatique basée sur la hauteur */
+  height: auto;                  /*Hauteur automatique basée sur la largeur */
+  object-fit: contain;           /*Assure que l'image conserve ses proportions */
+}
+
+/* Styles pour les bouton de fermeture de la modal */
+.close {
+  position: absolute;           /* Positionne le bouton de fermeture de manière absolue */
+  top: 15px;                    /* Place le bouton à 15px du haut */
+  right: 35px;                  /* Place le bouton à 35px de la droite */
+  color: #f1f1f1;             /* Couleur du texte blanc cassé */
+  font-size: 40px;              /* Taille de la police */
+  font-weight: bold;            /* Police en gras */
+  transition: 0.3s;             /* Ajoute une transition douce pour les changements */
+}
+
+/* Styles pour le survol et le focus du bouton de fermeture */
+.close:hover,
+.close:focus {
+  color: #bbb;                  /* Change la couleur au survol/focus */
+  text-decoration: none;        /* Supprime la décoration du texte */
+  cursor: pointer;              /* Change le curseur en pointeur */
+}
+
+.prev, .next {
+  cursor: pointer; /* Change le curseur en pointeur lorsqu'il survole ces éléments */
+  position: absolute; /* Positionne les éléments de manière absolue par rapport à leur conteneur */
+  top: 50%; /* Place les éléments à 50% du haut de leur conteneur */
+  width: auto; /* Définit la largeur automatique */
+  padding: 16px; /* Ajoute un rembourrage de 16 pixels autour du contenu */
+  margin-top: -22px; /* Décale les éléments de 22 pixels vers le haut */
+  color: white; /* Définit la couleur du texte en blanc */
+  font-weight: bold; /* Met le texte en gras */
+  font-size: 20px; /* Définit la taille de la police à 20 pixels */
+  transition: 0.6s ease; /* Ajoute une transition douce de 0.6 secondes */
+  border-radius: 0 3px 3px 0; /* Arrondit les coins droits */
+  user-select: none; /* Empêche la sélection du texte */
+}
+
+.next {
+  right: 0; /* Place l'élément 'next' à droite de son conteneur */
+  border-radius: 3px 0 0 3px; /* Arrondit les coins gauches */
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8); /* Change la couleur de fond au survol */
+}
+/* Fin des styles pour la modal (fenêtre pop-up) */
+
+.img-thumbnail {
+  border: 2px solid white; /* Ajoute une bordure blanche de 2 pixels autour de l'image */
+  padding: 5px; /* Ajoute un espace de 5 pixels entre l'image et la bordure */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère pour un effet de profondeur */
+  border-radius: 5px; /* Ajoute des coins légèrement arrondis à la bordure */
+  user-select: none; /* Empêche la sélection de l'image */
+  -webkit-user-select: none; /* Pour la compatibilité avec les navigateurs WebKit */
+  -moz-user-select: none; /* Pour la compatibilité avec Firefox */
+  -ms-user-select: none; /* Pour la compatibilité avec Internet Explorer/Edge */
+}
+
+img {
+  z-index: 800; /* Place l'élément au-dessus des autres éléments avec un z-index inférieur */
+  position: relative;/* Assure que les éléments enfants positionnés absolument sont relatifs à cet élément */
+  user-select: none; /* Empêche la sélection de toutes les images */
+  -webkit-user-select: none; /* Pour la compatibilité avec les navigateurs WebKit */
+  -moz-user-select: none; /* Pour la compatibilité avec Firefox */
+  -ms-user-select: none; /* Pour la compatibilité avec Internet Explorer/Edge */
+}
+/* style pour filigrane */
+#watermark {
+  position: absolute; /* Positionne l'élément de manière absolue par rapport à son parent positionné le plus proche */
+  z-index: 1001; /* Place l'élément au-dessus des autres éléments avec un z-index inférieur */
+  top: 50%; /* Place le bord supérieur de l'élément à 50% de la hauteur du parent */
+  left: 50%; /* Place le bord gauche de l'élément à 50% de la largeur du parent */
+  transform: translate(-50%, -50%); /* Centre l'élément en le déplaçant de 50% de sa propre largeur vers la gauche et 50% de sa hauteur vers le haut */
+  font-size: 4em; /* Définit la taille de la police à 4 fois la taille de base */
+  color: rgba(253, 8, 8, 0.571); /* Définit la couleur du texte en rouge semi-transparent */
+  pointer-events: none; /* Empêche l'élément de recevoir des événements de pointeur (comme les clics) */
+  user-select: none; /* Empêche la sélection du texte par l'utilisateur */
+  max-width: 100%; /* Assure que le filigrane ne dépasse pas la largeur de l'image */
+  word-wrap: break-word; /* Permet au texte de passer à la ligne si nécessaire */
+  text-align: center; /* Centre le texte à l'intérieur du filigrane */
+  white-space: pre-wrap; /* Permet de conserver les espaces et les sauts de ligne, et de passer à la ligne si nécessaire */
+
+}
+.existing-photos {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.existing-photos .photo-item {
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
 }

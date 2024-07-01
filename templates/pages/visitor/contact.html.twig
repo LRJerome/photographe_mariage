@@ -1,9 +1,9 @@
 {% extends 'themes/base.html.twig' %}
 
-{% block title %}Page d'exemples photo
+{% block title %}Page de contact
 {% endblock %}
 
-{% block description %}Voici la page des exemples de photos de mariage
+{% block description %}Voici la page pour nous contacter
 {% endblock %}
 
 {% block keywords %}exemples, mariage, contact
@@ -11,33 +11,65 @@
 
 {% block main %}
 	{# Contenu perso à modifier :  #}
-
-
 	<div class=" head_text container my-5 border border-dark rounded shadow p-3 ">
+				{% include 'components/_alert.html.twig' %}
 		<div class="d-flex justify-content-center ">
 			<h2 class=" d-inline-block text-center p-2 ">Contactez-nous</h2>
 		</div>
-		<form>
-			<div class="form-group pt-3 ">
-				<label for="name">Nom</label>
-				<input type="text" class="form-control formulaire" id="name" placeholder="Entrez votre nom">
+
+		{{form_start(form)}}
+		<div class="container">
+			<div class="row">
+				<div class="form-group pt-3 col-md-6">
+					<label for="contac_form_lastName">Nom  <span class="text-danger">*</span></label>
+					<div class="text-danger">{{ form_errors(form.lastName) }}</div>
+					{{form_widget(form.lastName,{'attr': {'class':'form-control formulaire', 'autofocus':'autofocus'}})}}
+				</div>
+				<div class="form-group pt-3 col-md-6">
+					<label  for="contac_form_firstName">Prénom  <span class="text-danger">*</span></label>
+					<div class="text-danger">{{ form_errors(form.firstName) }}</div>
+					{{form_widget(form.firstName,{'attr': {'class':'form-control formulaire'}})}}
+				</div>
 			</div>
-			<div class="form-group pt-3">
-				<label for="email">Email</label>
-				<input type="email" class="form-control formulaire" id="email" placeholder="Entrez votre email">
+			<div class="row">
+				<div class="form-group pt-3 col-md-6">
+					<label  for="contac_form_email">Email  <span class="text-danger">*</span></label>
+					<div class="text-danger">{{ form_errors(form.email) }}</div>
+					{{form_widget(form.email,{'attr': {'class':'form-control formulaire'}})}}
+				</div>
+				<div class="form-group pt-3 col-md-6">
+					<label for="contac_form_phone">Numéro de téléphone</label>
+					<div class="text-danger">{{ form_errors(form.phone) }}</div>
+					{{form_widget(form.phone,{'attr': {'class':'form-control formulaire'}})}}
+				</div>
 			</div>
-			<div class="form-group pt-3">
-				<label for="subject">Sujet</label>
-				<input type="text" class="form-control formulaire" id="subject" placeholder="Entrez le sujet de votre message">
+		</div>
+		<div class="form-group pt-3">
+			<label  for="contac_form_message">Message  <span class="text-danger">*</span></label>
+					<div class="text-danger">{{ form_errors(form.message) }}</div>
+			{{ form_widget(form.message, {'attr': {'class':'form-control formulaire', 'rows': '10'}})}}
+		</div>
+		<div class="text-center pt-3">
+			<input formnovalidate type="submit" class="btn btn-lg border-dark F5EBE0"></input>
+		</div>
+		<div class="row text-center">
+				<div class="form-group pt-3 col-md-6 fs-4">
+					<h3 class="p-5 fs-2">Nos coordonnées :</h3>
+					<p class="my-2">Rue des belles photos</p>
+					<p>29000 Quimper</p>
+					<p class="pb-3"><i class="fa-solid fa-phone"></i> : 06/12/34/56/78</p>
+
+				</div>
+				<div class="form-group pt-3 col-md-6">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42716.83211918621!2d-4.138400151111187!3d47.99821336891849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4810d5972e13aeaf%3A0xd32d85efcaa2cdd0!2s29000%20Quimper!5e0!3m2!1sfr!2sfr!4v1719823114943!5m2!1sfr!2sfr" class="w-100 h-100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					
+				</div>
 			</div>
-			<div class="form-group pt-3">
-				<label for="message">Message</label>
-				<textarea class="form-control formulaire" id="message" rows="5" placeholder="Entrez votre message"></textarea>
-			</div>
-			<div class="text-center pt-3">
-				<button type="submit" class="btn btn-lg border-dark F5EBE0">Envoyer</button>
-			</div>
-		</form>
+
+		{{ form_end(form) }}
+
+
+		
 	</div>
 
 

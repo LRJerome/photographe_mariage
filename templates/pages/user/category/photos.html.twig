@@ -1,0 +1,57 @@
+{% extends 'themes/base.html.twig' %}
+
+{% block title %}Page des photos des mariages
+{% endblock %}
+
+{% block description %}Voici la page de vos photos de mariage
+{% endblock %}
+
+{% block keywords %}photos, mariage, contact, joie, bonheur
+{% endblock %}
+
+{% block main %}
+	
+
+	{# Contenu perso à modifier :  #}
+
+
+	<div class="mx-auto col-auto">
+		{# <h2 class="head_text text-center p-3 m-5 border border-dark rounded shadow fs-1">Quelques exemples de ce que nous pouvons vous offrir...</h2> #}
+
+	
+
+	{# ---------------------- Remmetre ici exemples_test.html.twig si besoin -------------------------- #}
+
+	{# ---------------------- Debut test images par JS -------------------------- #}
+
+	<div class="w-75 mx-auto d-flex flex-column align-items-center mt-5">
+		<section id="pageContent">
+			<main class="row" id="singleGallery">
+				<h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1"></h2>
+				<figure id="galleryContainer"><img src="" alt=""/></figure>
+
+				<ul class="list-unstyled"></ul>
+			</main>
+		</section>
+	</div>
+	<!-- Div pour la modal -->
+
+	<div id="imageModal" class="modal_img">
+		<span class="close">&times;</span>
+		<img class="modal-content" id="modalImage">
+		<a class="prev" id="prevImage">&#10094;</a>
+		<a class="next" id="nextImage">&#10095;</a>
+		{# filigrane #}
+		<div id="watermark">Propriètée du Photographe, <br>copie INTERDITE</div>
+	</div>
+
+	{# ---------------------- Fin test images par JS -------------------------- #}
+
+	
+
+
+<script>const imagesPath = "{{ asset('Images/Mariages/') }}";</script>
+
+    <script src="{{ asset('js/jsMariages.js') }}"></script>
+{% endblock %}
+

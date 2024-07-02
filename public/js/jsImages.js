@@ -1,3 +1,4 @@
+
 window.addEventListener("load", () => {
   let currentIndex = 0; // Index de l'image actuellement affichée
   let images = []; // Tableau pour stocker les images
@@ -10,6 +11,7 @@ window.addEventListener("load", () => {
       }
       return response.json();
     })
+    
     .then((data) => {
       images = data.filter((image) => image !== ".DS_Store"); // Filtre .DS_Store
       images = data; // Stocke les images récupérées

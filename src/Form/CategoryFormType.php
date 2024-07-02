@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class CategoryFormType extends AbstractType
 {
@@ -28,8 +29,8 @@ class CategoryFormType extends AbstractType
 
     // Ajoute une collection de cases à cocher pour les photos existantes
     ->add('existingPhotos', CollectionType::class, [
-        'entry_type' => CheckboxType::class,  // Chaque élément de la collection est une case à cocher
-        'allow_add' => false,  // Ne permet pas d'ajouter de nouveaux éléments dynamiquement
+        'entry_type' => HiddenType::class,  // Chaque élément de la collection est une case à cocher
+        'allow_add' => true,  // Permet d'ajouter de nouveaux éléments dynamiquement
         'allow_delete' => true,  // Permet de supprimer des éléments
         'prototype' => false,  // N'utilise pas de prototype pour ajouter de nouveaux éléments
         'required' => false,  // Le champ n'est pas obligatoire

@@ -46,12 +46,13 @@
 							<div
 								class="col">
 								{# Carte Bootstrap pour encadrer chaque photo #}
+								
 								<div
 									class="card h-100">
 									{# Image de la photo #}
 									<img
-									src="{{ asset('Images/Mariages/' ~ photo.imageName) }}" class="card-img-top" alt="Photo de mariage" style="object-fit: cover; height: 200px;">
-
+									src="{{ asset(photo.adress) }}" class="card-img-top" alt="Photo de mariage" style="object-fit: cover; height: 200px;"> 
+									
 									{# Corps de la carte pour ajouter des informations ou des actions supplémentaires #}
 									<div
 										class="card-body">

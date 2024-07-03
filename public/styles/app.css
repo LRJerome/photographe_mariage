@@ -5,12 +5,24 @@
     _ #E3D5CA => navbar, footer, ...
     _ #D5BDAF
 */
+/* 
+variable pour les couleurs ....
+
+:root{
+  --primary-color: lime;
+}
+.bg-primary, .btn-primary{
+  background-color: var(--primary-color)!important;
+}
+.text-primary{
+  color:var(--primary-color)!important;
+} */
 
 html,
 body {
   background-color: #f5ebe0;      /* Définit la couleur de fond pour html et body */
   font-family: "Junction", cursive; /* Définit la police principale */
-  height: 100%;                   /* Assure que html et body occupent 100% de la hauteur */
+  height: 100%;                  /* Assure que html et body occupent 100% de la hauteur */
 }
 
 body {

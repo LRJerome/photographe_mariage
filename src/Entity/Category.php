@@ -145,7 +145,7 @@ class Category
     }
     */
     // Méthode pour retirer une photo de la collection
-    public function removePhoto(Photos $photo): self
+    public function removePhoto($photo): self
     {
         if ($this->photos->removeElement($photo)) {
             // set the owning side to null (unless already changed)

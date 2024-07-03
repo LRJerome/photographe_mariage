@@ -51,7 +51,7 @@ class Contact
         match: true,
         message: 'Entrez un numéro de téléphone valide, svp.',
     )]
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $phone = null;
     
     #[Assert\NotBlank(message: "Le message est obligatoire")]

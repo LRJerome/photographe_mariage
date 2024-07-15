@@ -146,4 +146,12 @@ window.addEventListener("load", () => {
     },
     false
   );
+  // contextmenu : clic de droite de la souris
+
+$( '#hover'). contextmenu (function(event) {
+  // empecher l'apparition du menu
+  event.preventDefault();
+  console.log( 'clic de droite');
+  alert('Clic de droite annulé');
+  });
 });

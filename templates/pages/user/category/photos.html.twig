@@ -14,13 +14,26 @@
         <div class="w-75 mx-auto d-flex flex-column align-items-center mt-5">
             <section id="pageContent">
                 <main class="row" id="singleGallery">
+                    {# Titre de la galerie #}
                     <h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1"></h2>
+                    
+                    {# Conteneur pour l'image principale #}
                     <figure id="galleryContainer"><img src="" alt=""/></figure>
+                    
+                    {# Liste des miniatures (sera remplie par JavaScript) #}
                     <ul class="list-unstyled"></ul>
+                    
+                     {# Bouton pour télécharger toutes les photos #}
+                    <div class="d-flex justify-content-end mt-3 me-3 p-5">
+                        <a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
+                            Télécharger les photos de cette page
+                        </a>
+                    </div>
                 </main>
             </section>
         </div>
 
+        {# Modal pour afficher l'image en grand #}
         <div id="imageModal" class="modal_img">
             <span class="close">&times;</span>
             <img class="modal-content" id="modalImage">
@@ -31,10 +44,12 @@
     </div>
 
     <script>
+        {# Variables JavaScript pour le chemin des images et l'ID de la catégorie #}
         const imagesPath = "{{ asset('Images/Mariages/') }}";
         const categoryId = "{{ category.id }}";
     </script>
 
+    {# Inclusion du script JavaScript pour la galerie #}
     <script src="{{ asset('js/jsMariages.js') }}"></script>
 {% endblock %}
 

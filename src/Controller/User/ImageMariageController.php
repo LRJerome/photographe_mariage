@@ -6,13 +6,18 @@ namespace App\Controller\User;
 
 
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Finder\Finder;
+use App\Repository\CategoryRepository;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ImageMariageController extends AbstractController
 {
+    public function __construct(private CategoryRepository $categoryRepository)
+    {
+    }
+
     #[Route('/Images/Mariages/{categoryID?}', name: 'api_images')]
     public function getImages(?string $categoryId = null): JsonResponse
     {
@@ -65,5 +70,20 @@ class ImageMariageController extends AbstractController
         }
 
         return $this->json($images);
+    }
+
+    #[Route('/api/category/{id}', name: 'api_category_info', methods: ['GET'])]
+    public function getCategoryInfo(int $id): JsonResponse
+    {
+        $category = $this->categoryRepository->find($id);
+
+        if (!$category) {
+            return $this->json(['error' => 'Category not found'], 404);
+        }
+
+        return $this->json([
+            'id' => $category->getId(),
+            'name' => $category->getName(),
+        ]);
     }
 }

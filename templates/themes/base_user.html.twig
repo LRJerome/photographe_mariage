@@ -71,11 +71,6 @@
 							</li>
 						</ul>
 						<ul class="navbar-nav ms-auto">
-							<li class="nav-item p-2">
-								<a class="mx-3" href="#">
-									<i class="fa-solid fa-basket-shopping fa-lg"></i>
-								</a>
-							</li>
 							{% if app.user %}
 								<li class="p-2">
 									{{app.user.firstName}}
@@ -101,18 +96,18 @@
 				</div>
 			</nav>
 		</header>
-		
+
 		{# Le contenu spécifique à chaque page #}
 		<main class="container-fluid"> {% block main %}{% endblock %}
-		</main>
+			</main>
 
-		{# insertion du components "_pieddepage" #}
-		{% include 'components/_piedDePage.html.twig' %}
-		{# insertion du components "_modalCGV" #}
-		{% include 'components/_modalCGV.html.twig' %}
+			{# insertion du components "_pieddepage" #}
+			{% include 'components/_piedDePage.html.twig' %}
+			{# insertion du components "_modalCGV" #}
+			{% include 'components/_modalCGV.html.twig' %}
 
-		{# le fichier javascript de bootstrat 5 #}
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+			{# le fichier javascript de bootstrat 5 #}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-	</body>
-</html>
+		</body>
+	</html>

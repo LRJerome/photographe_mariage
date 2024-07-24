@@ -44,7 +44,7 @@
 							<!-- Modal -->
 							<div class="modal fade" id="modal_{{contact.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 								<div class="modal-dialog">
-									<div class="modal-content">
+									<div class="head_text modal-content">
 										<div class="modal-header">
 											<h1 class="modal-title fs-5" id="staticBackdropLabel">{{contact.lastName}} {{contact.firstName}} </h1>
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -52,8 +52,8 @@
 										<div class="modal-body">
 											{{contact.message|nl2br}}
 										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+										<div class="modal-footer d-flex justify-content-center mb-3">
+											<button type="button" class="F5EBE0 btn btn-secondary text-dark text-center " data-bs-dismiss="modal">Fermer</button>
 										</div>
 									</div>
 								</div>

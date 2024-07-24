@@ -10,6 +10,54 @@
 {% endblock %}
 
 {% block main %}
-<h2 class="head_text text-center p-3 m-5 border border-dark rounded shadow fs-1">Ici les galeries photo des mariages....</h2>
 
+<div class="mx-auto col-auto">
+    <div class="w-75 mx-auto d-flex flex-column align-items-center mt-5">
+        <section id="pageContent">
+            <main class="row" id="singleGallery">
+                {# Titre de la galerie #}
+                <h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1"></h2>
+
+                {# Affichage de la description de la catégorie #}
+                <div class="w-75 text-center fs-3 mt-4 mt-5 mx-auto">
+                    <p class="text-center">{{ category.description|nl2br }}</p>
+                </div>
+
+                {# Conteneur pour l'image principale #}
+                <figure id="galleryContainer"><img src="" alt=""/></figure>
+
+                {# Liste des miniatures (sera remplie par JavaScript) #}
+                <ul class="list-unstyled"></ul>
+
+                {# Boutons pour retourner à l'accueil et télécharger toutes les photos #}
+                <div class="d-flex justify-content-center mt-3 me-3 p-5">
+                    
+                    <a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
+                        Télécharger les photos de cette page
+                    </a>
+                </div>
+            </main>
+        </section>
+    </div>
+
+    {# Modal pour afficher l'image en grand #}
+    <div id="imageModal" class="modal_img">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <a class="prev" id="prevImage">&#10094;</a>
+        <a class="next" id="nextImage">&#10095;</a>
+        <div id="watermark">Propriètée du Photographe,
+            <br>copie INTERDITE</div>
+    </div>
+</div>
+
+<script>
+    {# Variables JavaScript pour le chemin des images et l'ID de la catégorie #}
+    const imagesPath = "{{ asset('Images/Mariages/') }}";
+    const categoryId = "{{ category.id }}";
+    const categorySecretKey = "{{ category.secretKey }}";
+</script>
+            
+{# Inclusion du script JavaScript pour la galerie #}
+<script src="{{ asset('js/jsMariages.js') }}"></script>
 {% endblock %}

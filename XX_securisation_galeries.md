@@ -1,4 +1,4 @@
-# je vous drais securiser les galeries par des mots de passes et que celle-ci ne soient accessibles que par les utilisateurs enregistrés qui recoivent le mot de passe correspondant uniquement a leur galerie, et ca de facon automatique, sans que j'ai besoin de fournir ce mot de passe. comment puis je proceder, pour faire cela en symfony7?🧐
+# je voudrais securiser les galeries par des mots de passes et que celle-ci ne soient accessibles que par les utilisateurs enregistrés qui recoivent le mot de passe correspondant uniquement a leur galerie, et ca de facon automatique, sans que j'ai besoin de fournir ce mot de passe. comment puis je proceder, pour faire cela en symfony7?🧐
 
 Pour sécuriser les galeries avec des mots de passe et les rendre accessibles uniquement aux utilisateurs enregistrés dans Symfony 7, voici une approche que vous pouvez suivre :
 

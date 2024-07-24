@@ -33,12 +33,7 @@ class Category
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
-    // Description de la catégorie, optionnelle
-    #[Assert\Length(
-        max: 255,
-        maxMessage: 'La description ne doit pas dépasser {{ limit }} caractères',
-    )]
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
 
     // Fichier image temporaire pour l'upload
@@ -60,6 +55,16 @@ class Category
     // Date de dernière mise à jour de la catégorie
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'categories')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $weddingDateAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $secretKey = null;
     
     // Constructeur de la classe
     public function __construct()
@@ -208,6 +213,42 @@ class Category
     public function setPhoto($photo): self
     {
         $this->photo = $photo;
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getWeddingDateAt(): ?\DateTimeImmutable
+    {
+        return $this->weddingDateAt;
+    }
+
+    public function setWeddingDateAt(?\DateTimeImmutable $weddingDateAt): static
+    {
+        $this->weddingDateAt = $weddingDateAt;
+
+        return $this;
+    }
+
+    public function getSecretKey(): ?string
+    {
+        return $this->secretKey;
+    }
+
+    public function setSecretKey(string $secretKey): static
+    {
+        $this->secretKey = $secretKey;
+
         return $this;
     }
 }

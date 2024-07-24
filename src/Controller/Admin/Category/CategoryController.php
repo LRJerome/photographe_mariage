@@ -6,19 +6,21 @@ use App\Entity\Photos;
 use DateTimeImmutable;
 use App\Entity\Category;
 use App\Form\CategoryFormType;
+use Symfony\Component\Finder\Finder;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-#[Route('/admin')]
+
 class CategoryController extends AbstractController
 {
     // Constructeur avec injection de dépendances
@@ -30,7 +32,7 @@ class CategoryController extends AbstractController
     }
 
     // Route pour afficher la liste des catégories
-    #[Route('/category/list', name: 'admin_category_index', methods: ['GET'])]
+    #[Route('/admin/category/list', name: 'admin_category_index', methods: ['GET'])]
     public function index(): Response
     {
         // Rendu de la vue avec toutes les catégories
@@ -40,9 +42,14 @@ class CategoryController extends AbstractController
     }
 
     // Route pour créer une nouvelle catégorie
-    #[Route('/category/create', name: 'admin_category_create', methods: ['GET', 'POST'])]
+    #[Route('/admin/category/create', name: 'admin_category_create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
+        // creation d'un chiffre aleatoir pour url unique
+        $date = new DateTimeImmutable();
+        $timestamp = $date->getTimestamp();
+        $secretKey = $timestamp *  rand(1, 10);
+        
         // Création d'une nouvelle instance de Category
         $category = new Category();
         // Création du formulaire
@@ -53,6 +60,7 @@ class CategoryController extends AbstractController
             // Définition des dates de création et de mise à jour
             $category->setCreatedAt(new DateTimeImmutable());
             $category->setUpdatedAt(new DateTimeImmutable());
+            $category->setSecretKey($secretKey);
             
             // Persistance de la catégorie pour obtenir un ID
             $this->em->persist($category);
@@ -90,7 +98,7 @@ class CategoryController extends AbstractController
     }
 
     // Route pour éditer une catégorie existante
-    #[Route('/category/{id<\d+>}/edit', name: 'admin_category_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/category/{id<\d+>}/edit', name: 'admin_category_edit', methods: ['GET', 'POST'])]
     public function edit(Category $category, Request $request): Response {
         // Création du formulaire d'édition
         $form = $this->createForm(CategoryFormType::class, $category);
@@ -144,7 +152,7 @@ class CategoryController extends AbstractController
     }
 
     // Route pour supprimer une catégorie
-    #[Route('/category/{id<\d+>}/delete', name: 'admin_category_delete', methods: ['POST'])]
+    #[Route('/admin/category/{id<\d+>}/delete', name: 'admin_category_delete', methods: ['POST'])]
     public function delete(Category $category, Request $request): Response
     {
         // Vérification du jeton CSRF
@@ -237,28 +245,84 @@ class CategoryController extends AbstractController
         // Suppression de l'entité Photo de la base de données
         $this->em->remove($photo);
     }
-}
-    // Route pour afficher les photos d'une catégorie
-    /*
-    #[Route('/category/{id}', name: 'admin_category_show', methods: ['GET'], requirements: ['id' => '\d+'])]
-    public function showPhotos(int $id, EntityManagerInterface $entityManager): Response
-    {
-        // Récupération de la catégorie
-        $category = $entityManager->getRepository(Category::class)->find($id);
+    // #[Route("/images/list/{secretKey<\d+>}", name: "images_list")]
+    // public function listImages()
+    // {
+    //     $imagesDir = $this->getParameter('kernel.project_dir') . '/public/Images/Originales';
+    //     $images = array_values(array_diff(scandir($imagesDir), array('..', '.')));
+        
+    
+    //     return new JsonResponse($images);
+    // }
 
-        // Vérification de l'existence de la catégorie
-        if (!$category) {
-            throw $this->createNotFoundException('La catégorie demandée n\'existe pas');
+    #[Route('/Images/Mariages/{categoryID?}', name: 'api_images')]
+    public function getImages(?string $categoryId = null): JsonResponse
+    {
+        $finder = new Finder();
+        $images = [];
+
+        $baseDirectory = $this->getParameter('kernel.project_dir') . '/public/Images/Mariages';
+
+        if (is_dir($baseDirectory)) {
+            if ($categoryId) {
+                // Si une catégorie spécifique est demandée
+                $categoryPath = $baseDirectory . '/' . $categoryId;
+                if (is_dir($categoryPath)) {
+                    $finder->files()->in($categoryPath);
+                    foreach ($finder as $file) {
+                        $filename = $file->getFilename();
+                        if ($filename !== '.DS_Store') {
+                            $images[] = [
+                                'filename' => $filename,
+                                'path' => 'Images/Mariages/' . $categoryId . '/' . $filename
+                            ];
+                        }
+                    }
+                }
+            } else {
+                // Si aucune catégorie n'est spécifiée, retournez toutes les catégories
+                $finder->directories()->in($baseDirectory);
+                foreach ($finder as $categoryDir) {
+                    $categoryId = $categoryDir->getFilename();
+                    $categoryImages = [];
+
+                    $imageFinder = new Finder();
+                    $imageFinder->files()->in($categoryDir->getRealPath());
+
+                    foreach ($imageFinder as $file) {
+                        $filename = $file->getFilename();
+                        if ($filename !== '.DS_Store') {
+                            $categoryImages[] = [
+                                'filename' => $filename,
+                                'path' => 'Images/Mariages/' . $categoryId . '/' . $filename
+                            ];
+                        }
+                    }
+
+                    if (!empty($categoryImages)) {
+                        $images[$categoryId] = $categoryImages;
+                    }
+                }
+            }
         }
 
-        // Récupération des photos de la catégorie
-        $photos = $category->getPhotos();
+        return $this->json($images);
+    }
 
-        // Rendu de la vue avec les photos de la catégorie
-        return $this->render('pages/user/category/photos.html.twig', [
-            'category' => $category,
-            'photos' => $photos,
+    #[Route('/api/category/{id}', name: 'api_category_info', methods: ['GET'])]
+    public function getCategoryInfo(int $id): JsonResponse
+    {
+        $category = $this->categoryRepository->find($id);
+
+        if (!$category) {
+            return $this->json(['error' => 'Category not found'], 404);
+        }
+
+        return $this->json([
+            'id' => $category->getId(),
+            'name' => $category->getName(),
         ]);
     }
-    */
+}
+
 

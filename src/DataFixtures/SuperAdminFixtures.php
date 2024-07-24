@@ -38,7 +38,7 @@ class SuperAdminFixtures extends Fixture
         $superAdmin ->setVerified(true);
         $superAdmin ->setCreatedAt( new DateTimeImmutable());
         $superAdmin ->setVerifiedAt( new DateTimeImmutable());
-     
+    
         return $superAdmin;
     }
 }

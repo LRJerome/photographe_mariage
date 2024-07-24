@@ -2,19 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
+use App\Entity\User;
 
+use App\Entity\Category;
 use App\Form\PhotosFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class CategoryFormType extends AbstractType
 {
@@ -23,7 +26,15 @@ class CategoryFormType extends AbstractType
         $builder
     // Ajoute un champ de texte pour le nom
     ->add('name', TextType::class)
-
+    ->add('user', EntityType::class, [
+        'class' => User::class,
+        'choice_label' => 'email',
+        'multiple' => false,   
+        'expanded' => false,
+        'placeholder' => "Choisir un utilisateur"
+    ])
+    ->add('weddingDateAt', DateType::class)
+    
     // Ajoute un champ de texte multiligne pour la description
     ->add('description', TextareaType::class)
 
@@ -40,7 +51,7 @@ class CategoryFormType extends AbstractType
 
     // Ajoute un champ de type fichier pour télécharger de nouvelles images
     ->add('imageFiles', FileType::class, [
-        'label' => 'Images',  // Label du champ
+        'label' => false,   // Label du champ
         'multiple' => true,  // Permet de sélectionner plusieurs fichiers
         'mapped' => false,  // Ne mappe pas ce champ à une propriété de l'entité
         'required' => false,  // Le champ n'est pas obligatoire

@@ -5,6 +5,11 @@
     _ #E3D5CA => navbar, footer, ...
     _ #D5BDAF
 */
+
+.bg-danger{
+  background-color:#D5BDAF !important;
+  color: red;
+}
 /* 
 variable pour les couleurs ....
 

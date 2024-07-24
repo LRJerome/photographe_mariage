@@ -287,3 +287,40 @@ Citations:
 [4] https://nouvelle-techno.fr/articles/7-reinitialisation-du-mot-de-passe-des-utilisateurs-symfony-7
 [5] https://www.youtube.com/watch?v=RH0AbGA49nI
 
+# ------
+
+En utilisant cette méthode pour ajouter un système de récupération de mot de passe personnalisé à votre site Symfony 7 existant, vous n'aurez généralement pas besoin de créer de nouveaux contrôleurs, entités ou templates. Voici un résumé de ce que vous devrez modifier :
+
+1. Entité existante :
+   - Modifiez l'entité User existante pour ajouter les champs `weddingDate` et `coupleNames`.
+
+2. Formulaire existant :
+   - Adaptez le formulaire `ResetPasswordRequestFormType` existant pour inclure les nouveaux champs.
+
+3. Contrôleur existant :
+   - Modifiez le `ResetPasswordController` existant pour intégrer la nouvelle logique de vérification.
+
+4. Template existant :
+   - Mettez à jour le template `reset_password/request.html.twig` existant pour afficher les nouveaux champs.
+
+5. Migration de base de données :
+   - Créez et exécutez une nouvelle migration pour ajouter les nouveaux champs à la table utilisateur.
+
+Vous n'aurez pas besoin de créer :
+
+- Nouveaux contrôleurs : Vous utiliserez le contrôleur de réinitialisation de mot de passe existant.
+- Nouvelles entités : Vous modifierez simplement l'entité User existante.
+- Nouveaux templates : Vous mettrez à jour le template de réinitialisation de mot de passe existant.
+
+Cependant, gardez à l'esprit que vous devrez peut-être :
+
+1. Adapter la logique d'inscription :
+   Si vous voulez que les utilisateurs fournissent la date du mariage et les noms des mariés lors de l'inscription, vous devrez modifier le formulaire et le contrôleur d'inscription existants.
+
+2. Mettre à jour les fixtures ou les données existantes :
+   Si vous avez des utilisateurs existants dans votre base de données, vous devrez peut-être mettre à jour leurs informations pour inclure la date du mariage et les noms des mariés.
+
+3. Ajuster les tests :
+   Si vous avez des tests unitaires ou fonctionnels pour le processus de réinitialisation du mot de passe, vous devrez les mettre à jour pour prendre en compte les nouveaux champs.
+
+En résumé, cette approche vise à intégrer la nouvelle fonctionnalité dans le système existant plutôt que de créer un système parallèle. Cela minimise les changements nécessaires et maintient la cohérence de votre application.

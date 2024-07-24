@@ -30,6 +30,18 @@
 					<div class="text-danger">{{form_errors(form.name)}}</div>
 					{{form_widget(form.name, {'attr':{'class':'formulaire form-control','autofocus':'autofocus'}})}}
 				</div>
+{# div pour le champ email du client #}
+				<div class="mb-3">
+					<label for="category_form_user">
+						Email du client
+						<span class="text-danger">*</span>
+					</label>
+					<div class="text-danger">
+					{{form_errors(form.user)}}
+					</div>
+					{{form_widget(form.user, {'attr':{'class':'formulaire form-control'}})}}
+				</div>
+{# div pour le champ email du client #}
 				<div class="mb-3">
 					<label for="category_form_description">
 						Description
@@ -38,12 +50,19 @@
 					{{form_widget(form.description, {'attr':{'class':'formulaire form-control', 'rows':'10'}})}}
 				</div>
 				<div class="mb-3">
-					<label for="category_form_photos">
+					<label for="">
+						Date du mariage
+					</label>
+					<div class="text-danger">{{form_errors(form.weddingDateAt)}}</div>
+					{{form_widget(form.weddingDateAt, {'attr':{'class':'formulaire form-control'}})}}
+				</div>
+				<div class="mb-3 text-center fs-4">
+					<label class="p-3" for="category_form_photos">
 						Ajouter une ou des photos
 					</label>
 					<div class="text-danger">{{form_errors(form.description)}}</div>
 					<div id="category_form_photos">
-						{{form_row(form.imageFiles, {'attr':{'class':'formulaire form-control', 'rows':'10'}})}}
+						{{form_row(form.imageFiles, {'attr':{'class':'formulaire form-control'}})}}
 						{# <button type="button" class="btn btn-primary mt-2" id="add_photo_button">Ajouter une image</button> #}
 					</div>
 				</div>

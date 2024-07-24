@@ -10,16 +10,36 @@
 {% endblock %}
 
 {% block main %}
-		{# Contenu perso à modifier :  #}
-	<div class="mx-auto col-auto">
-		
+	{# Contenu perso à modifier :  #}
+	<div
+		class="mx-auto col-auto">
+
 		{# ---------------------- Affichage des images via JS (jsImages.js) -------------------------- #}
+
 		<div class="w-75 mx-auto d-flex flex-column align-items-center mt-5">
 			<section id="pageContent">
 				<main class="row" id="singleGallery">
 					<h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1">></h2>
+					<div class="container text-center w-75 fs-3 mt-4 mt-5 mx-auto">
+						<p>Bienvenue dans mon univers photographique !</p>
+						<p>Je suis Jérôme, passionné par l'art de capturer les moments uniques de votre grand jour. Depuis 2014, j'ai eu le privilège d'immortaliser les instants magiques de nombreux mariages, mêlant avec enthousiasme le photojournalisme à des portraits dynamiques et modernes.</p>
+						<p>Mon approche ? Discrétion, qualité et émotion. Je m'efforce de saisir l'essence de votre journée, des préparatifs jusqu'aux dernières danses, en passant par ces petits détails qui font toute la différence. Que ce soit la sortie d'église, l'ouverture du bal ou les portraits de famille, je m'adapte à chaque situation pour vous offrir des souvenirs authentiques et vibrants.</p>
+						<p>Fort d'une formation artistique et d'une expérience internationale, je vous propose un regard unique sur votre mariage. Mon objectif ? Raconter votre histoire d'amour à travers des images qui vous ressemblent, dans une ambiance décontractée et joyeuse.</p>
+						<p>Alors, prêts à créer ensemble le plus beau des albums photo ? Contactez-moi pour discuter de votre projet de mariage autour d'un café. Ensemble, nous transformerons vos moments précieux en souvenirs éternels.</p>
+
+					</div>
+					<div class="d-flex justify-content-center mt-3 me-3 p-5">
+					<a href="{{path('app_contact')}}" class="border border-dark btn head_text btn-block btn-lg mx-5 fs-3">
+						Un devis, un renseignement, cliquez Ici!
+					</a>
+					</div>
 					<figure id="galleryContainer"><img src="" alt=""/></figure>
 					<ul class="list-unstyled"></ul>
+					<div class="d-flex justify-content-center mt-3 me-3 p-5">
+					<a href="{{path('app_contact')}}" class="border border-dark btn head_text btn-block btn-lg mx-5 fs-3">
+						Un devis, un renseignement, cliquez Ici!
+					</a>
+					</div>
 				</main>
 			</section>
 		</div>
@@ -31,18 +51,12 @@
 			<a class="prev" id="prevImage">&#10094;</a>
 			<a class="next" id="nextImage">&#10095;</a>
 			{# filigrane #}
-			<div id="watermark">Propriètée du Photographe, <br>copie INTERDITE</div>
+			<div id="watermark">Propriètée du Photographe,
+				<br>copie INTERDITE</div>
 		</div>
 		{# ---------------------- Fin test images par JS -------------------------- #}
-		<div class="container text-center fs-4 ">		
-				<p>Bienvenue dans mon univers photographique ! Je suis Jérôme, passionné par l'art de capturer les moments uniques de votre grand jour. Depuis 2014, j'ai eu le privilège d'immortaliser les instants magiques de nombreux mariages, mêlant avec enthousiasme le photojournalisme à des portraits dynamiques et modernes.</p>
-				<p>Mon approche ? Discrétion, qualité et émotion. Je m'efforce de saisir l'essence de votre journée, des préparatifs jusqu'aux dernières danses, en passant par ces petits détails qui font toute la différence. Que ce soit la sortie d'église, l'ouverture du bal ou les portraits de famille, je m'adapte à chaque situation pour vous offrir des souvenirs authentiques et vibrants.</p>
-				<p>Fort d'une formation artistique et d'une expérience internationale, je vous propose un regard unique sur votre mariage. Mon objectif ? Raconter votre histoire d'amour à travers des images qui vous ressemblent, dans une ambiance décontractée et joyeuse.</p>
-				<p>Alors, prêts à créer ensemble le plus beau des albums photo ? Contactez-moi pour discuter de votre projet de mariage autour d'un café. Ensemble, nous transformerons vos moments précieux en souvenirs éternels.</p>
-			
-		</div>
+
 	</div>
 	{# Lien pour le fichier JS (jsImages.js) #}
 	<script src="{{asset('js/jsImages.js')}}"></script>
 {% endblock %}
-

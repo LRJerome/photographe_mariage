@@ -18,7 +18,7 @@
 
 	<div class="col-md-12 col-lg-12 mx-auto table-responsive">
 		<table
-			class=" table table-striped table-hover table-bordered text-center border border-dark ">
+			class=" table table-striped table-hover table-bordered text-center border border-dark border-">
 			{# class="table" pour responsive #}
 			<thead class="head_text">
 				<tr>
@@ -36,7 +36,6 @@
 					<tr>
 						<td>{{category.id}}</td>
 						<td>
-							{# changer cette ligne pour avoir des "pages dynimaique" via  #}
 							<a href="{{ path('category_show', {'id': category.id}) }}">
 								{{category.name}}</a>
 						</td>
@@ -46,7 +45,6 @@
 							</a>
 						</td>
 
-						{# <td>www.j-leroy.fr/mariages/{{category.secretKey ?? '...'}}</td> #}
 						<td>{{category.description ?? '...'}}</td>
 						<td>{{category.createdAt | format_date}}</td>
 						<td>{{category.updatedAt | format_date}}</td>

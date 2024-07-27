@@ -1,27 +1,39 @@
 <?php
 namespace App\Controller;
 
-
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use ZipArchive;
+use App\Entity\Category;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use ZipArchive;
-use Symfony\Component\Finder\Finder;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 
 class DownloadController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/telecharger-photos/{categoryId}', name: 'telecharger_photos')]
     public function telechargerPhotos(string $categoryId): Response
     {
-        $zipFileName = 'photos_mariage_' . $categoryId . '.zip';
+        $photoPaths = $this->getPhotoPaths($categoryId);
+
+        if (empty($photoPaths)) {
+            return new Response("Pas d'images à télécharger !", Response::HTTP_NOT_FOUND);
+        }
+
+        $nomMaries = $this->getNomMaries($categoryId);
+        $zipFileName = 'Photos du mariage de ' . $nomMaries . '.zip';
         $zipFilePath = sys_get_temp_dir() . '/' . $zipFileName;
 
         $zip = new ZipArchive();
         if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-            $photoPaths = $this->getPhotoPaths($categoryId);
-
             foreach ($photoPaths as $photoPath) {
                 $zip->addFile($photoPath, basename($photoPath));
             }
@@ -53,5 +65,17 @@ class DownloadController extends AbstractController
         }
 
         return $photoPaths;
+    }
+
+    private function getNomMaries(string $categoryId): string
+    {
+        $category = $this->entityManager->getRepository(Category::class)->find($categoryId);
+        
+        if (!$category) {
+            return 'Inconnu';
+        }
+        
+        // Supposons que l'entité Category a une méthode getNom() qui retourne le nom de la catégorie
+        return $category->getName();
     }
 }

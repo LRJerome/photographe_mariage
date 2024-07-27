@@ -17,6 +17,7 @@
             <main class="row" id="singleGallery">
                 {# Titre de la galerie #}
                 <h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1"></h2>
+                {# <p>{{category.weddingDateAt}}</p> #}
 
                 {# Affichage de la description de la catégorie #}
                 <div class="w-75 text-center fs-3 mt-4 mt-5 mx-auto">
@@ -41,14 +42,16 @@
     </div>
 
     {# Modal pour afficher l'image en grand #}
-    <div id="imageModal" class="modal_img">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImage">
-        <a class="prev" id="prevImage">&#10094;</a>
-        <a class="next" id="nextImage">&#10095;</a>
-        <div id="watermark">Propriètée du Photographe,
-            <br>copie INTERDITE</div>
-    </div>
+	<div id="imageModal" class="modal_img">
+		<button id="startSlideshow" class="text-dark next border btn head_text btn-block btn-lg mx-5 mt-n5">Démarrer le diaporama</button>
+		<span class="close">&times;</span>
+		<img class="modal-content" id="modalImage">
+		<a class="prev" id="prevImage">&#10094;</a>
+		<a class="next" id="nextImage">&#10095;</a>
+		<div id="watermark">Propriètée du Photographe,
+			<br>copie INTERDITE</div>
+
+	</div>
 </div>
 
 <script>
@@ -56,6 +59,7 @@
     const imagesPath = "{{ asset('Images/Mariages/') }}";
     const categoryId = "{{ category.id }}";
     const categorySecretKey = "{{ category.secretKey }}";
+    const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
 </script>
             
 {# Inclusion du script JavaScript pour la galerie #}

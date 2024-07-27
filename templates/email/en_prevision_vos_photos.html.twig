@@ -1,0 +1,16 @@
+<div class="text-center"><h2>Bonjour {{category.name}}</h2>
+
+<p>Vous avez reçu un message de	<a href="#">www.j-leroy.fr</a>, conernant les photos de votre mariage.</p>
+
+<p>Voici le lien pour acceder à la galerie de vos photos :</p>
+
+<a href="{{ path('app_mariages', {'secretKey': category.secretKey}) }}">
+	{{ 'https://localhost:8000/mariages/' ~ category.secretKey }}
+</a>
+<div>
+	<p>Vous pouvez donner ce lien a vos amis.
+	Les photos sont téléchargeables dans un fichier .zip directement depuis la page d'affichage, sinon, vous pouvez les voir en grand format en cliquant sur la premiere.</p>
+    <p>Dans l'attente de vous revoir, je vous souhaites tout le bonheur du monde.</p>
+</div>
+
+</div>

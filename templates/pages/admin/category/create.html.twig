@@ -18,7 +18,6 @@
 
 		<div
 			class="col-md-8 col-lg-6 mx-auto">
-			{# ---------------debut modif------------------------- #}
 
 
 {{form_start(form)}}
@@ -30,7 +29,6 @@
 					<div class="text-danger">{{form_errors(form.name)}}</div>
 					{{form_widget(form.name, {'attr':{'class':'formulaire form-control','autofocus':'autofocus'}})}}
 				</div>
-{# div pour le champ email du client #}
 				<div class="mb-3">
 					<label for="category_form_user">
 						Email du client
@@ -41,7 +39,6 @@
 					</div>
 					{{form_widget(form.user, {'attr':{'class':'formulaire form-control'}})}}
 				</div>
-{# div pour le champ email du client #}
 				<div class="mb-3">
 					<label for="category_form_description">
 						Description

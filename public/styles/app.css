@@ -164,7 +164,13 @@ textarea {
   border-radius: 0 3px 3px 0; /* Arrondit les coins droits */
   user-select: none; /* Empêche la sélection du texte */
 }
-
+#startSlideshow {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
 .next {
   right: 0; /* Place l'élément 'next' à droite de son conteneur */
   border-radius: 3px 0 0 3px; /* Arrondit les coins gauches */

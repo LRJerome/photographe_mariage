@@ -229,3 +229,6 @@ img {
   margin: 5px;
   text-align: center;
 }
+.custom-rounded {
+  border-radius: 0.25rem !important;
+}

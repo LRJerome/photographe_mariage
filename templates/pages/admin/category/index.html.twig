@@ -9,22 +9,18 @@
 	<div class="fs-4">
 		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow ">Listes des mariages!</h2>
 		{% include 'components/_alert.html.twig' %}
-
 	</div>
 	<div class="d-flex justify-content-center align-items-center my-1 p-5 ">
 		<a href="{{path('admin_category_create')}}" class="w-50 border border-dark btn head_text btn-block btn-lg">Ajouter un mariage</a>
 	</div>
 
-
 	<div class="col-md-12 col-lg-12 mx-auto table-responsive">
-		<table
-			class=" table table-striped table-hover table-bordered text-center border border-dark border-">
-			{# class="table" pour responsive #}
+		<table class="table table-striped table-hover table-bordered text-center border border-dark border-">
 			<thead class="head_text">
 				<tr>
 					<th>Id</th>
 					<th>Nom</th>
-					<th>Lien d'acces à la galerie</th>
+					<th>Lien d'accès à la galerie</th>
 					<th>Description</th>
 					<th>Créé le</th>
 					<th>Modifié le</th>
@@ -44,26 +40,38 @@
 								{{ 'https://localhost:8000/mariages/' ~ category.secretKey }}
 							</a>
 						</td>
-
 						<td>{{category.description ?? '...'}}</td>
 						<td>{{category.createdAt | format_date}}</td>
 						<td>{{category.updatedAt | format_date}}</td>
 						<td>
-							<div
-								class="d-flex justify-content-center">
-								{# bouton de modification #}
-								<a href="{{ path('admin_category_edit', {'id': category.id}) }}" class=" mx-2 border border-dark btn head_text btn-sm mr-2">Modifier</a>
-								{# bouton de suppression #}
-								<form class="d-inline" method="POST" action="{{ path('admin_category_delete', {'id': category.id}) }}">
-									<input type="hidden" name="_method" value="POST">
-									<input type="hidden" name="csrf_token" value="{{ csrf_token('delete_category_' ~ category.id) }}">
-									<input type="submit" class=" mx-2 border border-dark btn bg-danger btn-sm" value="supprimer" onclick="return confirm('Confirmer la suppression?')">
-								</form>
+							<div class="d-flex justify-content-center align-items-center">
+								<div class="btn-group custom-btn-group" role="group" aria-label="Actions pour le mariage">
+									<a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="border border-dark btn head_text btn-sm custom-rounded" title="Modifier">
+										<i class="fas fa-edit"></i>
+										Modifier
+									</a>
+
+									<form method="POST" action="{{ path('admin_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce mariage ?');">
+										<input type="hidden" name="_method" value="POST">
+										<input type="hidden" name="csrf_token" value="{{ csrf_token('delete_category_' ~ category.id) }}">
+										<button type="submit" class="border border-danger btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
+											<i class="fas fa-trash-alt"></i>
+											Supprimer
+										</button>
+									</form>
+
+									<form id="send-email-form-{{ category.id }}" action="{{ path('app_email') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir envoyer cet E-mail?');">
+										<input type="hidden" name="category_id" value="{{ category.id }}">
+										<button type="submit" class="border border-dark btn head_text btn-sm custom-rounded" title="Envoyer un e-mail">
+											<i class="fas fa-envelope"></i>
+											E-mail
+										</button>
+									</form>
+								</div>
 							</div>
 						</td>
 					</tr>
 				{% endfor %}
-
 			</tbody>
 		</table>
 	</div>

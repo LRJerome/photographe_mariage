@@ -1,7 +1,14 @@
-
 window.addEventListener("load", () => {
   let currentIndex = 0; // Index de l'image actuellement affichée
   let images = []; // Tableau pour stocker les images
+  let isAutoPlaying = false; // État de la lecture automatique
+  let autoPlayInterval; // Intervalle pour la lecture automatique
+
+  // Fonction pour désactiver le clic droit
+  function disableRightClick(event) {
+    event.preventDefault();
+    alert('Clic droit désactivé');
+  }
 
   // Récupère la liste des images depuis le serveur
   fetch("/images/list")
@@ -11,14 +18,12 @@ window.addEventListener("load", () => {
       }
       return response.json();
     })
-    
     .then((data) => {
       images = data.filter((image) => image !== ".DS_Store"); // Filtre .DS_Store
-      images = data; // Stocke les images récupérées
 
       // Sélectionne l'élément ul dans le DOM
       let rootUl = document.querySelector("#singleGallery ul");
-      // Sélectionne l'élément h1 dans le DOM
+      // Sélectionne l'élément h2 dans le DOM
       let galTitle = document.querySelector("#singleGallery h2");
       // Définit un titre pour la galerie
       galTitle.textContent = "Nos plus beaux événements!";
@@ -31,13 +36,8 @@ window.addEventListener("load", () => {
         let theLi = document.createElement("li");
         // Ajoute les classes Bootstrap aux éléments <li>
         theLi.classList.add(
-          "col-sm-12",
-          "col-lg-6",
-          "col-xl-4",
-          "mb-4",
-          "d-flex",
-          "justify-content-center",
-          "g-4"
+          "col-sm-12", "col-lg-6", "col-xl-4", "mb-4",
+          "d-flex", "justify-content-center", "g-4"
         );
         // Crée un nouvel élément img
         let theImg = document.createElement("img");
@@ -49,8 +49,6 @@ window.addEventListener("load", () => {
         theImg.style.cursor = "pointer";
         // Limite la hauteur de l'image à 550px
         theImg.style.height = "550px";
-        // Ajuste la largeur automatiquement pour maintenir le ratio
-        // theImg.style.minHeight = "550px";
         theImg.style.objectFit = "cover";
         theImg.style.width = "auto";
         // Ajoutez une ombre
@@ -87,6 +85,9 @@ window.addEventListener("load", () => {
     // Afficher le filigrane
     watermark.style.display = "block";
 
+    // Définir le texte du bouton de démarrage du diaporama
+    document.getElementById("startSlideshow").textContent = isAutoPlaying ? "Arrêter le diaporama" : "Démarrer le diaporama";
+
     // Sélectionner le bouton de fermeture (X) dans la modal
     let span = document.getElementsByClassName("close")[0];
 
@@ -95,6 +96,7 @@ window.addEventListener("load", () => {
       modal.style.display = "none";
       // Cacher le filigrane quand on ferme la modal
       watermark.style.display = "none";
+      stopAutoPlay(); // Arrêter la lecture automatique lors de la fermeture
     };
 
     // Ajouter un écouteur d'événement sur la fenêtre entière
@@ -105,6 +107,7 @@ window.addEventListener("load", () => {
         modal.style.display = "none";
         // Cacher le filigrane quand on ferme la modal
         watermark.style.display = "none";
+        stopAutoPlay(); // Arrêter la lecture automatique lors de la fermeture
       }
     };
   }
@@ -121,20 +124,31 @@ window.addEventListener("load", () => {
     showSinglePict(currentIndex);
   }
 
+  // Fonction pour démarrer la lecture automatique
+  function startAutoPlay() {
+    if (!isAutoPlaying) {
+      isAutoPlaying = true;
+      autoPlayInterval = setInterval(showNextImage, 2500); // Change d'image toutes les 2.5 secondes
+      document.getElementById("startSlideshow").textContent = "Arrêter le diaporama";
+    } else {
+      stopAutoPlay();
+    }
+  }
+
+  // Fonction pour arrêter la lecture automatique
+  function stopAutoPlay() {
+    isAutoPlaying = false;
+    clearInterval(autoPlayInterval);
+    document.getElementById("startSlideshow").textContent = "Démarrer le diaporama";
+  }
+
   // Ajouter des écouteurs d'événements pour les boutons de navigation
   document.getElementById("prevImage").onclick = showPrevImage;
   document.getElementById("nextImage").onclick = showNextImage;
+  document.getElementById("startSlideshow").onclick = startAutoPlay;
 
-  // Désactiver le clic droit sur les images
-  document.addEventListener(
-    "contextmenu",
-    function (e) {
-      if (e.target.tagName === "IMG") {
-        e.preventDefault();
-      }
-    },
-    false
-  );
+  // Désactiver le clic droit sur toute la page
+  document.addEventListener('contextmenu', disableRightClick, false);
 
   // Désactiver le glisser-déposer des images
   document.addEventListener(
@@ -146,12 +160,4 @@ window.addEventListener("load", () => {
     },
     false
   );
-  // contextmenu : clic de droite de la souris
-
-$( '#hover'). contextmenu (function(event) {
-  // empecher l'apparition du menu
-  event.preventDefault();
-  console.log( 'clic de droite');
-  alert('Clic de droite annulé');
-  });
 });

@@ -12,13 +12,12 @@
 <div class="container my-5 border border-dark rounded shadow p-3 head_text ">
 	<div class="d-flex justify-content-center ">
 
-		<h2 class=" d-inline-block text-center p-2">Ajout de nouveaux mariages</h2>
+		<h2 class=" d-inline-block text-center p-2">Ajoutez les nouveaux mariages ici</h2>
 	</div>
 	<div class="row">
 
 		<div
 			class="col-md-8 col-lg-6 mx-auto">
-			{# ---------------debut modif------------------------- #}
 
 
 {{form_start(form)}}
@@ -30,7 +29,6 @@
 					<div class="text-danger">{{form_errors(form.name)}}</div>
 					{{form_widget(form.name, {'attr':{'class':'formulaire form-control','autofocus':'autofocus'}})}}
 				</div>
-{# div pour le champ email du client #}
 				<div class="mb-3">
 					<label for="category_form_user">
 						Email du client
@@ -41,7 +39,6 @@
 					</div>
 					{{form_widget(form.user, {'attr':{'class':'formulaire form-control'}})}}
 				</div>
-{# div pour le champ email du client #}
 				<div class="mb-3">
 					<label for="category_form_description">
 						Description
@@ -63,7 +60,6 @@
 					<div class="text-danger">{{form_errors(form.description)}}</div>
 					<div id="category_form_photos">
 						{{form_row(form.imageFiles, {'attr':{'class':'formulaire form-control'}})}}
-						{# <button type="button" class="btn btn-primary mt-2" id="add_photo_button">Ajouter une image</button> #}
 					</div>
 				</div>
 				<div class="mb-3 d-flex justify-content-between">

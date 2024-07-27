@@ -62,7 +62,7 @@ class CategoryFormType extends AbstractType
         'constraints' => [
             new \Symfony\Component\Validator\Constraints\All([  // Applique les contraintes à chaque fichier
                 new \Symfony\Component\Validator\Constraints\Image([
-                    'maxSize' => '10M',  // Taille maximale de 10 Mo
+                    // 'maxSize' => '10M',   Taille maximale de 10 Mo
                     'mimeTypes' => [  // Types MIME autorisés
                         'image/jpeg',
                         'image/png',

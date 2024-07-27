@@ -35,6 +35,7 @@
 					<a href="{{path('admin_category_index')}}" class="border border-dark btn head_text btn-block btn-lg mx-5">
 						Retour à la liste des mariages
 					</a>
+
 					<a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
 						Télécharger les photos de cette page
 					</a>
@@ -45,22 +46,25 @@
 
 	{# Modal pour afficher l'image en grand #}
 	<div id="imageModal" class="modal_img">
+		<button id="startSlideshow" class="text-dark next border btn head_text btn-block btn-lg mx-5 mt-n5">Démarrer le diaporama</button>
 		<span class="close">&times;</span>
 		<img class="modal-content" id="modalImage">
 		<a class="prev" id="prevImage">&#10094;</a>
 		<a class="next" id="nextImage">&#10095;</a>
 		<div id="watermark">Propriètée du Photographe,
 			<br>copie INTERDITE</div>
+
 	</div>
 </div>
 
 <script>
 	{# Variables JavaScript pour le chemin des images et l'ID de la catégorie #}
-			const imagesPath = "{{ asset('Images/Mariages/') }}";
-			const categoryId = "{{ category.id }}";
-			const categorySecretKey = "{{ category.secretKey }}";
-</script>
-			
-			    {# Inclusion du script JavaScript pour la galerie #}
-<script src="{{ asset('js/jsMariages.js') }}"></script>
-{% endblock %}
+								const imagesPath = "{{ asset('Images/Mariages/') }}";
+								const categoryId = "{{ category.id }}";
+								const categorySecretKey = "{{ category.secretKey }}";
+								const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
+					</script>
+								
+								    {# Inclusion du script JavaScript pour la galerie #}
+					<script src="{{ asset('js/jsMariages.js') }}"></script>
+					{% endblock %}

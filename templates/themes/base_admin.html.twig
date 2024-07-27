@@ -7,15 +7,17 @@
 		<meta name="author" content="j-leroy">
 		<meta name="generator" content="">
 		<title>
-			{% block title %}{% endblock %} j-leroy.fr
+			{% block title %}{% endblock %}
+			j-leroy.fr
 		</title>
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-		
+		<link
+		rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
 		{# Font awesome #}
 		<link
 		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-		
+
 		{# jQuery #}
 		{% block jQuery %}{% endblock %}
 
@@ -28,7 +30,7 @@
 		{# Select2 #}
 		{% block select2 %}{% endblock %}
 
-				{# A stylesheet part of Bootstrap 5 #}
+		{# A stylesheet part of Bootstrap 5 #}
 		<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -36,8 +38,7 @@
 		<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 		{# Ma propre feuille de styles #}
-		<link
-		rel="stylesheet" href="{{asset('styles/app.css')}}">
+		<link rel="stylesheet" href="{{asset('styles/app.css')}}">
 
 	</head>
 	<body>
@@ -100,7 +101,7 @@
 											Liste de contacts
 										</a>
 									</li>
-									
+
 								</ul>
 								<!-- ----------------ligne avant les settings--------------- -->
 								<hr>
@@ -115,7 +116,7 @@
 										<a class="navbar-brand col-md-3 col-lg-2  px-3  text-dark" href="{{path('app_welcome')}}">Espace user</a>
 									</li>
 									<li class="nav-item my-2">
-									<i class="fa-solid fa-arrow-right-from-bracket"></i>
+										<i class="fa-solid fa-arrow-right-from-bracket"></i>
 										<a class="navbar-brand col-md-3 col-lg-2  px-3  text-dark" href="{{ path('app_logout') }}">Déconnexion</a>
 									</li>
 								</ul>
@@ -128,7 +129,7 @@
 						{% block main %}{% endblock %}
 					</main>
 				</div>
-				
+
 
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 			</body>

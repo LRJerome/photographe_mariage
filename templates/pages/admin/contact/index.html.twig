@@ -46,7 +46,9 @@
 								<div class="modal-dialog">
 									<div class="head_text modal-content">
 										<div class="modal-header">
-											<h1 class="modal-title fs-5" id="staticBackdropLabel">{{contact.lastName}} {{contact.firstName}} </h1>
+											<h1 class="modal-title fs-5" id="staticBackdropLabel">{{contact.lastName}}
+												{{contact.firstName}}
+											</h1>
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
@@ -62,13 +64,14 @@
 						</td>
 						<td>{{contact.createdAt | format_date}}</td>
 						<td>
-							<div
-								class="d-flex justify-content-center">
-								{# bouton de suppression #}
-								<form class="d-inline" method="POST" action="{{ path('admin_contact_delete', {'id': contact.id}) }}">
+							<div class="btn-group custom-btn-group" role="group">
+								<form method="POST" action="{{ path('admin_contact_delete', {'id': contact.id}) }}" onsubmit="return confirm('Confirmer la suppression?');">
 									<input type="hidden" name="_method" value="POST">
 									<input type="hidden" name="csrf_token" value="{{ csrf_token('delete_contact_' ~ contact.id) }}">
-									<input type="submit" class=" mx-2 border border-dark btn bg-danger btn-sm" value="supprimer" onclick="return confirm('Confirmer la suppression?')">
+									<button type="submit" class="border border-dark btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
+										<i class="fas fa-trash-alt"></i>
+										Supprimer
+									</button>
 								</form>
 							</div>
 						</td>

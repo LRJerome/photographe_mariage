@@ -45,30 +45,28 @@
 						<td>{{category.updatedAt | format_date}}</td>
 						<td>
 							<div class="d-flex justify-content-center align-items-center">
-								<div class="btn-group custom-btn-group" role="group" aria-label="Actions pour le mariage">
-									<a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="border border-dark btn head_text btn-sm custom-rounded" title="Modifier">
-										<i class="fas fa-edit"></i>
-										Modifier
-									</a>
+    <div class="d-flex justify-content-center align-items-center">
+    <div class="btn-group custom-btn-group" role="group" aria-label="Actions pour le mariage">
+        <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="border border-dark btn head_text btn-sm custom-rounded" title="Modifier">
+            <i class="fas fa-edit"></i> Modifier
+        </a>
 
-									<form method="POST" action="{{ path('admin_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce mariage ?');">
-										<input type="hidden" name="_method" value="POST">
-										<input type="hidden" name="csrf_token" value="{{ csrf_token('delete_category_' ~ category.id) }}">
-										<button type="submit" class="border border-danger btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
-											<i class="fas fa-trash-alt"></i>
-											Supprimer
-										</button>
-									</form>
+        <form method="POST" action="{{ path('admin_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce mariage ?');">
+            <input type="hidden" name="_method" value="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token('delete_category_' ~ category.id) }}">
+            <button type="submit" class="border border-danger btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
+                <i class="fas fa-trash-alt"></i> Supprimer
+            </button>
+        </form>
 
-									<form id="send-email-form-{{ category.id }}" action="{{ path('app_email') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir envoyer cet E-mail?');">
-										<input type="hidden" name="category_id" value="{{ category.id }}">
-										<button type="submit" class="border border-dark btn head_text btn-sm custom-rounded" title="Envoyer un e-mail">
-											<i class="fas fa-envelope"></i>
-											E-mail
-										</button>
-									</form>
-								</div>
-							</div>
+        <form id="send-email-form-{{ category.id }}" action="{{ path('app_email') }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir envoyer cet E-mail?');">
+            <input type="hidden" name="category_id" value="{{ category.id }}">
+            <button type="submit" class="border border-dark btn head_text btn-sm custom-rounded" title="Envoyer un e-mail">
+                <i class="fas fa-envelope"></i> E-mail
+            </button>
+        </form>
+    </div>
+</div>
 						</td>
 					</tr>
 				{% endfor %}

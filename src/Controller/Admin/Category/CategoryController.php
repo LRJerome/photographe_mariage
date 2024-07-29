@@ -33,12 +33,16 @@ class CategoryController extends AbstractController
 
     // Route pour afficher la liste des catégories
     #[Route('/admin/category/list', name: 'admin_category_index', methods: ['GET'])]
-    public function index(): Response
-    {
-        // Rendu de la vue avec toutes les catégories
-        return $this->render('pages/admin/category/index.html.twig', [
-            "categories" => $this->categoryRepository->findAll()
-        ]);
+public function index(): Response
+{
+    $categories = $this->categoryRepository->findAll();
+    $categoryCount = $this->categoryRepository->countCategories();
+    dd($categoryCount);
+            // Rendu de la vue avec toutes les catégories
+        return $this->render('pages/admin/category/home/index.html.twig', [
+            'categories' => $categories,
+        'categoryCount' => 42,
+    ]);
     }
 
     // Route pour créer une nouvelle catégorie

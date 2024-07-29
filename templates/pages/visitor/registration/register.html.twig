@@ -29,22 +29,22 @@
 			<div class="row  pt-3 justify-content-center  ">
 
 				<div class="col-12 mb-3 ">
-					<label for="registration_form_firstName" class="form-label fs-4">Prénom :</label>
+					<label for="registration_form_firstName" class="form-label fs-4">Prénom :<span class="text-danger">*</span></label>
 					<div class="text-danger">{{form_errors(registrationForm.firstName)}}</div>
 					{{form_widget(registrationForm.firstName,{'attr': {'class':'formulaire form-control','autofocus':'autofocus'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_lastName" class="form-label fs-4">Nom :</label>
+					<label for="registration_form_lastName" class="form-label fs-4">Nom :<span class="text-danger">*</span></label>
 					<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
 					{{form_widget(registrationForm.lastName,{'attr': {'class':'formulaire form-control'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_email" class="form-label fs-4">Email :</label>
+					<label for="registration_form_email" class="form-label fs-4">Email :<span class="text-danger">*</span></label>
 					<div class="text-danger">{{form_errors(registrationForm.email)}}</div>
 					{{form_widget(registrationForm.email,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_phoneNumber" class="form-label fs-4">Numero de telephone :</label>
+					<label for="registration_form_phoneNumber" class="form-label fs-4">Numero de telephone :<span class="text-danger">*</span></label>
 					{{form_widget(registrationForm.phoneNumber,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="col-12 mb-3">
@@ -52,12 +52,12 @@
 					{{form_widget(registrationForm.adress,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_password_first" class="form-label fs-4">Ici votre mot de passe :</label>
+					<label for="registration_form_password_first" class="form-label fs-4">Ici votre mot de passe :<span class="text-danger">*</span></label>
 					<div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
 					{{form_widget(registrationForm.password.first,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_password_second" class="form-label fs-4">Confirmation de votre mot de passe :</label>
+					<label for="registration_form_password_second" class="form-label fs-4">Confirmation de votre mot de passe :<span class="text-danger">*</span></label>
 					{{form_widget(registrationForm.password.second,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="text-center col-12 mb-3">

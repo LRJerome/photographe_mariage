@@ -1,0 +1,81 @@
+{% extends "themes/base_admin.html.twig" %}
+{% block title %}liste  des messages
+{% endblock %}
+{% block description %}Espace d'administration des messages
+{% endblock %}
+
+
+{% block main %}
+	<div class="fs-4">
+		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Liste des utilisateurs et contacts</h2>
+	</div>
+
+	<div class="col-md-12 col-lg-12 mx-auto table-responsive">
+		<table class="table table-striped table-hover table-bordered text-center border border-dark">
+			<thead class="head_text">
+				<tr>
+					<th>Type</th>
+					<th>Prénom</th>
+					<th>Nom</th>
+					<th>Email</th>
+					<th>Téléphone</th>
+					<th>Adresse / Message recu</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td><i class="fa-regular fa-user"></i> Utilisateur</td>
+						<td>{{ user.firstName }}</td>
+						<td>{{ user.lastName }}</td>
+						<td>{{ user.email }}</td>
+						<td>{{ user.phoneNumber }}</td>
+						<td>{{ user.adress }}</td>
+						<td>
+							<div class="d-flex justify-content-center align-items-center">
+								<div class="btn-group custom-btn-group" role="group">
+									<form method="POST" action="{{ path('admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete_user_' ~ user.id) }}">
+										<button type="submit" class="border border-dark btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
+											<i class="fas fa-trash-alt"></i>
+											Supprimer
+										</button>
+									</form>
+								</div>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+				{% for contact in contacts %}
+					<tr>
+						<td><i class="fa-regular fa-message"></i> Contact</td>
+						<td>{{ contact.firstName }}</td>
+						<td>{{ contact.lastName }}</td>
+						<td>{{ contact.email }}</td>
+						<td>{{contact.phone ? contact.phone : '---'}}</td>
+						<td>
+							{% if contact.message %}
+								<i class="fa-regular fa-thumbs-up"></i>
+							{% else %}
+								---
+							{% endif %}
+						</td>
+						<td>
+							<div class="btn-group custom-btn-group" role="group">
+								<form method="POST" action="{{ path('admin_contact_delete', {'id': contact.id}) }}" onsubmit="return confirm('Confirmer la suppression?');">
+									<input type="hidden" name="_method" value="POST">
+									<input type="hidden" name="csrf_token" value="{{ csrf_token('delete_contact_' ~ contact.id) }}">
+									<button type="submit" class="border border-dark btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
+										<i class="fas fa-trash-alt"></i>
+										Supprimer
+									</button>
+								</form>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

@@ -29,39 +29,47 @@
 			<div class="row  pt-3 justify-content-center  ">
 
 				<div class="col-12 mb-3 ">
-					<label for="registration_form_firstName" class="form-label fs-4">Prénom :<span class="text-danger">*</span></label>
+					<label for="registration_form_firstName" class="form-label fs-4">Prénom :<span class="text-danger">*</span>
+					</label>
 					<div class="text-danger">{{form_errors(registrationForm.firstName)}}</div>
 					{{form_widget(registrationForm.firstName,{'attr': {'class':'formulaire form-control','autofocus':'autofocus'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_lastName" class="form-label fs-4">Nom :<span class="text-danger">*</span></label>
+					<label for="registration_form_lastName" class="form-label fs-4">Nom :<span class="text-danger">*</span>
+					</label>
 					<div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
 					{{form_widget(registrationForm.lastName,{'attr': {'class':'formulaire form-control'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_email" class="form-label fs-4">Email :<span class="text-danger">*</span></label>
+					<label for="registration_form_email" class="form-label fs-4">Email :<span class="text-danger">*</span>
+					</label>
 					<div class="text-danger">{{form_errors(registrationForm.email)}}</div>
 					{{form_widget(registrationForm.email,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_phoneNumber" class="form-label fs-4">Numero de telephone :<span class="text-danger">*</span></label>
+					<label for="registration_form_phoneNumber" class="form-label fs-4">Numero de telephone :<span class="text-danger">*</span>
+					</label>
 					{{form_widget(registrationForm.phoneNumber,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="col-12 mb-3">
 					<label for="registration_form_adress" class="form-label fs-4">Entrez votre adresse :</label>
-					{{form_widget(registrationForm.adress,{'attr': {'class':'formulaire form-control w-100'}})}}
+					{{form_widget(registrationForm.adress,{'attr': {'class':'formulaire form-control w-100',
+            				'placeholder': 'L\'adresse n\'est pas obligatoire, mais fortement conseillée'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_password_first" class="form-label fs-4">Ici votre mot de passe :<span class="text-danger">*</span></label>
+					<label for="registration_form_password_first" class="form-label fs-4">Ici votre mot de passe :<span class="text-danger">*</span>
+					</label>
 					<div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
 					{{form_widget(registrationForm.password.first,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="col-12 mb-3">
-					<label for="registration_form_password_second" class="form-label fs-4">Confirmation de votre mot de passe :<span class="text-danger">*</span></label>
+					<label for="registration_form_password_second" class="form-label fs-4">Confirmation de votre mot de passe :<span class="text-danger">*</span>
+					</label>
 					{{form_widget(registrationForm.password.second,{'attr': {'class':'formulaire form-control w-100'}})}}
 				</div>
 				<div class="text-center col-12 mb-3">
-					{{form_widget(registrationForm.agreeTerms, {'attr': {'checked':'checked'}} )}}
+					{{form_widget(registrationForm.agreeTerms, {'attr': {'checked':'checked'}}
+					)}}
 					<div class="text-danger">{{form_errors(registrationForm.agreeTerms)}}</div>
 					<label for="registration_form_agreeTerms" class="form-label fs-4">
 						<a href="" data-bs-toggle="modal" data-bs-target="#modal_inscription">Lire et accepter les conditions :</a>
@@ -72,30 +80,32 @@
 						<div class="modal-dialog">
 							<div class="head_text modal-content">
 								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="exampleModalLabel">Conditions d'inscription sur <a href="{{path('app_welcome')}}">www.j-leroy.fr</a></h1>
+									<h1 class="modal-title fs-5" id="exampleModalLabel">Conditions d'inscription sur
+										<a href="{{path('app_welcome')}}">www.j-leroy.fr</a>
+									</h1>
 									<button type="button" class=" btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
 									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, est.
-									                                Eum debitis reprehenderit cupiditate provident? Voluptatum fugit excepturi est harum?
-									                                Corporis ad suscipit vero totam eaque dolor nesciunt praesentium voluptatibus?
-									                                Maxime, facere consequatur? Eius itaque obcaecati aliquam a nisi? Ratione.
-									                                Quo velit obcaecati, eum ipsam suscipit ducimus beatae magnam? At?
-									                                Rem iure ut corrupti voluptatibus reiciendis, voluptatem id error temporibus.
-									                                Quam, perferendis officiis rem animi distinctio ipsam est soluta eaque!
-									                                Facilis culpa modi cumque at. Iure consequatur sit explicabo dicta?
-									                                Quae pariatur dolorem nulla minus temporibus voluptate distinctio aut ipsa.
-									                                Iste atque doloremque fugiat, iure excepturi laborum eligendi asperiores dignissimos!
-									                                Architecto quasi similique magnam, iste aut praesentium expedita cupiditate nobis?
-									                                Assumenda ad ab sequi nobis veniam? Sunt eius ipsa eaque.
-									                                Quae veniam ipsa ratione dicta culpa. Qui tempore laborum sequi.
-									                                Architecto, voluptas fugiat assumenda nesciunt ratione perferendis. Quas, architecto amet.
-									                                Commodi autem earum nesciunt minima saepe facere architecto eius atque.
-									                                Excepturi ratione quia culpa quisquam necessitatibus nobis, fuga quas aliquid.
-									                                Dignissimos eaque enim aut tempora magnam nisi eveniet omnis quisquam.
-									                                Cum voluptatum corporis maiores sequi illum voluptate nostrum architecto qui.
-									                                Et, itaque exercitationem! Laborum, ea nam earum placeat aut et.
-									                                Aliquid aperiam nihil porro odit nesciunt nobis! Aperiam, tenetur ea.
+																																													                                Eum debitis reprehenderit cupiditate provident? Voluptatum fugit excepturi est harum?
+																																													                                Corporis ad suscipit vero totam eaque dolor nesciunt praesentium voluptatibus?
+																																													                                Maxime, facere consequatur? Eius itaque obcaecati aliquam a nisi? Ratione.
+																																													                                Quo velit obcaecati, eum ipsam suscipit ducimus beatae magnam? At?
+																																													                                Rem iure ut corrupti voluptatibus reiciendis, voluptatem id error temporibus.
+																																													                                Quam, perferendis officiis rem animi distinctio ipsam est soluta eaque!
+																																													                                Facilis culpa modi cumque at. Iure consequatur sit explicabo dicta?
+																																													                                Quae pariatur dolorem nulla minus temporibus voluptate distinctio aut ipsa.
+																																													                                Iste atque doloremque fugiat, iure excepturi laborum eligendi asperiores dignissimos!
+																																													                                Architecto quasi similique magnam, iste aut praesentium expedita cupiditate nobis?
+																																													                                Assumenda ad ab sequi nobis veniam? Sunt eius ipsa eaque.
+																																													                                Quae veniam ipsa ratione dicta culpa. Qui tempore laborum sequi.
+																																													                                Architecto, voluptas fugiat assumenda nesciunt ratione perferendis. Quas, architecto amet.
+																																													                                Commodi autem earum nesciunt minima saepe facere architecto eius atque.
+																																													                                Excepturi ratione quia culpa quisquam necessitatibus nobis, fuga quas aliquid.
+																																													                                Dignissimos eaque enim aut tempora magnam nisi eveniet omnis quisquam.
+																																													                                Cum voluptatum corporis maiores sequi illum voluptate nostrum architecto qui.
+																																													                                Et, itaque exercitationem! Laborum, ea nam earum placeat aut et.
+																																													                                Aliquid aperiam nihil porro odit nesciunt nobis! Aperiam, tenetur ea.
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="F5EBE0 btn btn-secondary text-dark" data-bs-dismiss="modal">Fermer</button>

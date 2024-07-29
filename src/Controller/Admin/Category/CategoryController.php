@@ -37,11 +37,11 @@ public function index(): Response
 {
     $categories = $this->categoryRepository->findAll();
     $categoryCount = $this->categoryRepository->countCategories();
-    dd($categoryCount);
+
             // Rendu de la vue avec toutes les catégories
-        return $this->render('pages/admin/category/home/index.html.twig', [
+        return $this->render('pages/admin/category/index.html.twig', [
             'categories' => $categories,
-        'categoryCount' => 42,
+        'categoryCount' => $categoryCount,
     ]);
     }
 

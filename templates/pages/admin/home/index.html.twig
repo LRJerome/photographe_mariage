@@ -10,38 +10,36 @@
 			{{app.user.firstName}}!</h2>
 
 		<div class="container">
-			<div class="row d-flex justify-content-center">
-
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="stats-admin col-md-4 col-lg-3 border border-dark rounded text-center p-0 m-3">
-							<h3 class="head_text p-2 rounded border-bottom border-dark">Nombres de catégories</h3>
-							<p class="p-3 fs-3">
-								<i class="fa-regular fa-image"></i>
-								%</p>
-						</div>
+			<div class="row justify-content-center">
+				<div class="col-md-4 col-lg-3 m-2">
+					<div class="stats-admin border border-dark rounded text-center p-0">
+						<h3 class="head_text p-2 rounded border-bottom border-dark">Nombres de galeries</h3>
+						<p class="p-3 fs-3">
+							<i class="fa-regular fa-image"></i>
+							{{ categoryCount }}
+						</p>
 					</div>
 				</div>
 
-				<div class="stats-admin  col-md-4 col-lg-3 border border-dark rounded text-center p-0 m-3">
-					<h3 class="head_text p-2 rounded border-bottom border-dark">Messages reçus</h3>
-					<p class="p-3 fs-3">
-						<i class="fa-regular fa-message"></i>#######</p>
+				<div class="col-md-4 col-lg-3 m-2">
+					<div class="stats-admin border border-dark rounded text-center p-0">
+						<h3 class="head_text p-2 rounded border-bottom border-dark">Nombres de messages</h3>
+						<p class="p-3 fs-3">
+							<i class="fa-regular fa-message"></i>
+							{{ contactMessageCount }}
+						</p>
+					</div>
 				</div>
 
-				<div class="stats-admin  col-md-4 col-lg-3 border border-dark rounded text-center p-0 m-3">
-					<h3 class="head_text p-2 rounded border-bottom border-dark">Les utilisateurs enregistrés</h3>
-					<p class="p-3 fs-3">
-						<i class="fa-regular fa-user"></i>#######</p>
+				<div class="col-md-4 col-lg-3 m-2">
+					<div class="stats-admin border border-dark rounded text-center p-0">
+						<h3 class="head_text p-2 rounded border-bottom border-dark">Nombres d'utilisateurs</h3>
+						<p class="p-3 fs-3">
+							<i class="fa-regular fa-user"></i>
+							{{ userCount }}
+						</p>
+					</div>
 				</div>
-
-				<div class="stats-admin  col-md-4 col-lg-3 border border-dark rounded text-center p-0 m-3">
-					<h3 class="head_text p-2 rounded border-bottom border-dark">Les contacts</h3>
-					<p class="p-3 fs-3">
-						<i class="fa-regular fa-address-book"></i>######</p>
-				</div>
-
-
 			</div>
 		</div>
 	{% endblock %}

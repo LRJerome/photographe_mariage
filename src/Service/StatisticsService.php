@@ -25,7 +25,7 @@ class StatisticsService
 
     public function getCategoryCount(): int
     {
-        return $this->categoryRepository->countCategories();
+        return $this->categoryRepository->count([]);
     }
 
     public function getContactMessageCount(): int
@@ -41,5 +41,10 @@ class StatisticsService
     public function getMessageCount(): int
     {
         return $this->contactRepository->count([]);
+    }
+
+    public function getUniqueContactsCount(): int
+    {
+        return count($this->contactRepository->findUniqueEmailContacts());
     }
 }

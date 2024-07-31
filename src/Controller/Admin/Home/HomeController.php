@@ -19,6 +19,7 @@ class HomeController extends AbstractController
             'contactMessageCount' => $statisticsService->getContactMessageCount(),
             'userCount' => $statisticsService->getUserCount(),
             'messageCount' => $statisticsService->getMessageCount(),
+            'uniqueContactsCount' => $statisticsService->getUniqueContactsCount(),
         ]);
 }
 }

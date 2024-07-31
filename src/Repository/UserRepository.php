@@ -32,4 +32,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
+
+    /**
+     * @return User[] Returns an array of User objects with their creation date
+     */
+    public function findAllWithCreationDate(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -54,7 +54,7 @@
         <form method="POST" action="{{ path('admin_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce mariage ?');">
             <input type="hidden" name="_method" value="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token('delete_category_' ~ category.id) }}">
-            <button type="submit" class="border border-danger btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
+            <button type="submit" class="border border-dark btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
                 <i class="fas fa-trash-alt"></i> Supprimer
             </button>
         </form>

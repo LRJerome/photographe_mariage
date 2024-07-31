@@ -17,8 +17,8 @@ class UserAdminController extends AbstractController
     #[Route('/admin/users', name: 'admin_user_list')]
     public function list(UserRepository $userRepository, ContactRepository $contactRepository): Response
     {
-        $users = $userRepository->findAll();
-        $contacts = $contactRepository->findAll();
+        $users = $userRepository->findAllWithCreationDate();
+        $contacts = $contactRepository->findUniqueEmailContacts();
 
         return $this->render('pages/admin/contact/list.html.twig', [
             'users' => $users,

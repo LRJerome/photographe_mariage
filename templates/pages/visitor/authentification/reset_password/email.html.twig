@@ -4,6 +4,6 @@
 
 <a href="{{ url('visitor_authentification_reset_password', {token: resetToken.token}) }}">{{ url('visitor_authentification_reset_password', {token: resetToken.token}) }}</a>
 
-<p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+<p>Ce lien expirera dans  {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
 
 <p>A bientôt !</p>

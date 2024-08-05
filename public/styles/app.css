@@ -1,27 +1,17 @@
 /*  Mon nuancier de couleur se trouve être : /
-    - #EDEDE9
-    _ #D6CCC2
-    _ #F5EBE0 => Body
-    _ #E3D5CA => navbar, footer, ...
-    _ #D5BDAF
+    - #EDEDE9 => Gris pâle
+    _ #D6CCC2 => Gris beige
+    _ #F5EBE0 => Pêche clair (Body)
+    _ #E3D5CA => Marron clair (navbar, footer)
+    _ #D5BDAF => Marron rosé
 */
 
+/* Définit un arrière-plan Marron rosé et un texte rouge pour les éléments avec la classe bg-danger */
 .bg-danger{
   background-color:#D5BDAF !important;
   color: red;
 }
-/* 
-variable pour les couleurs ....
 
-:root{
-  --primary-color: lime;
-}
-.bg-primary, .btn-primary{
-  background-color: var(--primary-color)!important;
-}
-.text-primary{
-  color:var(--primary-color)!important;
-} */
 
 html,
 body {
@@ -57,11 +47,11 @@ a:active {
 }
 
 .head_text {
-  background-color: #e3d5ca;    /* Couleur de fond pour la classe head_text */
+  background-color: #e3d5ca;    /* Couleur de fond Marron clair pour la classe head_text */
 }
 
 .F5EBE0 {
-  background-color: #f5ebe0;    /* Couleur de fond pour la classe F5EBE0 */
+  background-color: #f5ebe0;    /* Couleur de fond Pêche clair pour la classe F5EBE0 */
 }
 
 input,
@@ -70,21 +60,21 @@ textarea {
 }
 
 .formulaire {
-  background-color: #f5ebe0;    /* Couleur de fond pour la classe formulaire */
+  background-color: #f5ebe0;    /* Couleur de fond Pêche clair pour la classe formulaire */
 }
 
 .table {
-  --bs-table-bg: none !important; /* Supprime la couleur de fond par défaut des tables Bootstrap */
+  --bs-table-bg: none !important; /* Supprime la couleur de fond par défaut des "table" Bootstrap  pour pouvoir y incorporer mes couleurs de fond*/
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > td,
 .table-striped > tbody > tr:nth-of-type(odd) > th {
-  --bs-table-accent-bg: transparent; /* Supprime la couleur de fond alternée des lignes impaires */
+  --bs-table-accent-bg: transparent; /* Supprime la couleur de fond alternée des lignes impaires pour pouvoir y incorporer mes couleurs*/
 }
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  --bs-table-hover-bg: transparent; /* Supprime la couleur de fond au survol des lignes */
+  --bs-table-hover-bg: transparent; /* Supprime la couleur de fond au survol des lignes pour pouvoir y incorporer mes couleurs*/
 }
 
 /* Styles pour la liste non ordonnée dans #singleGallery */
@@ -117,18 +107,17 @@ textarea {
 }
 
 /* Styles pour le contenu de la modal */
-
 .modal_img .modal-content {
   z-index: 980; /* Place l'élément au-dessus des autres éléments avec un z-index inférieur */
   position: relative;            /* Assure que les éléments enfants positionnés absolument sont relatifs à cet élément */
-  top: 50%;                      /*Place le haut de l'image à 50% de la hauteur de la modal */
-  left: 50%;                     /*Place la gauche de l'image à 50% de la largeur de la modal */
-  transform: translate(-50%, -50%);  /*Centre l'image parfaitement */
-  max-width: 90%;                /*Limite la largeur maximale à 90% de la modal */
-  max-height: 90%;               /*Limite la hauteur maximale à 90% de la modal */
-  width: auto;                   /*Largeur automatique basée sur la hauteur */
-  height: auto;                  /*Hauteur automatique basée sur la largeur */
-  object-fit: contain;           /*Assure que l'image conserve ses proportions */
+  top: 50%;                      /* Place le haut de l'image à 50% de la hauteur de la modal */
+  left: 50%;                     /* Place la gauche de l'image à 50% de la largeur de la modal */
+  transform: translate(-50%, -50%);  /* Centre l'image parfaitement */
+  max-width: 90%;                /* Limite la largeur maximale à 90% de la modal */
+  max-height: 90%;               /* Limite la hauteur maximale à 90% de la modal */
+  width: auto;                   /* Largeur automatique basée sur la hauteur */
+  height: auto;                  /* Hauteur automatique basée sur la largeur */
+  object-fit: contain;           /* Assure que l'image conserve ses proportions */
 }
 
 /* Styles pour les bouton de fermeture de la modal */
@@ -150,6 +139,7 @@ textarea {
   cursor: pointer;              /* Change le curseur en pointeur */
 }
 
+/* Styles pour les boutons de navigation (précédent et suivant) dans la modal */
 .prev, .next {
   cursor: pointer; /* Change le curseur en pointeur lorsqu'il survole ces éléments */
   position: absolute; /* Positionne les éléments de manière absolue par rapport à leur conteneur */
@@ -164,23 +154,28 @@ textarea {
   border-radius: 0 3px 3px 0; /* Arrondit les coins droits */
   user-select: none; /* Empêche la sélection du texte */
 }
+
+/* Styles pour le bouton de démarrage du diaporama */
 #startSlideshow {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
+  position: absolute; /* Positionne l'élément de manière absolue */
+  top: 50px; /* Place l'élément à 50px du haut */
+  left: 50%; /* Centre horizontalement l'élément */
+  transform: translateX(-50%); /* Ajuste la position pour un centrage parfait */
+  z-index: 3; /* Assure que le bouton est au-dessus des autres éléments */
 }
+
+/* Styles spécifiques pour le bouton 'suivant' */
 .next {
   right: 0; /* Place l'élément 'next' à droite de son conteneur */
   border-radius: 3px 0 0 3px; /* Arrondit les coins gauches */
 }
 
+/* Styles pour le survol des boutons de navigation */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8); /* Change la couleur de fond au survol */
 }
-/* Fin des styles pour la modal (fenêtre pop-up) */
 
+/* Styles pour les miniatures d'images */
 .img-thumbnail {
   border: 2px solid white; /* Ajoute une bordure blanche de 2 pixels autour de l'image */
   padding: 5px; /* Ajoute un espace de 5 pixels entre l'image et la bordure */
@@ -192,6 +187,7 @@ textarea {
   -ms-user-select: none; /* Pour la compatibilité avec Internet Explorer/Edge */
 }
 
+/* Styles généraux pour toutes les images */
 img {
   z-index: 800; /* Place l'élément au-dessus des autres éléments avec un z-index inférieur */
   position: relative;/* Assure que les éléments enfants positionnés absolument sont relatifs à cet élément */
@@ -200,7 +196,8 @@ img {
   -moz-user-select: none; /* Pour la compatibilité avec Firefox */
   -ms-user-select: none; /* Pour la compatibilité avec Internet Explorer/Edge */
 }
-/* style pour filigrane */
+
+/* Styles pour le filigrane */
 #watermark {
   position: absolute; /* Positionne l'élément de manière absolue par rapport à son parent positionné le plus proche */
   z-index: 1001; /* Place l'élément au-dessus des autres éléments avec un z-index inférieur */
@@ -215,20 +212,25 @@ img {
   word-wrap: break-word; /* Permet au texte de passer à la ligne si nécessaire */
   text-align: center; /* Centre le texte à l'intérieur du filigrane */
   white-space: pre-wrap; /* Permet de conserver les espaces et les sauts de ligne, et de passer à la ligne si nécessaire */
-
 }
+
+/* Styles pour le conteneur des photos existantes */
 .existing-photos {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  margin-top: 20px; /* Ajoute une marge en haut */
+  padding: 10px; /* Ajoute un rembourrage intérieur */
+  border: 1px solid #ddd; /* Ajoute une bordure grise claire */
+  border-radius: 5px; /* Arrondit les coins */
 }
 
+/* Styles pour chaque élément photo dans le conteneur des photos existantes */
 .existing-photos .photo-item {
-  display: inline-block;
-  margin: 5px;
-  text-align: center;
+  display: inline-block; /* Affiche les éléments en ligne */
+  margin: 5px; /* Ajoute une petite marge autour de chaque élément */
+  text-align: center; /* Centre le contenu de chaque élément */
 }
+
+/* Ajoute des coins arrondis personnalisés */
 .custom-rounded {
-  border-radius: 0.25rem !important;
+  border-radius: 0.25rem !important; /* Force l'application d'un rayon de bordure de 0.25rem */
 }
+

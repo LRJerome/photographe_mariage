@@ -17,7 +17,7 @@
 			<div class=" mx-auto fs-4">
 				<p>
 					Si un compte correspondant à votre adresse e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
-                    Ce lien expirera dans{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                    Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
 				</p>
 				<p>Si vous ne recevez pas d'e-mail, veuillez vérifier vos courriers indésirables (SPAM) ou
 					<a class="border border-dark btn head_text btn-block btn-lg" href="  {{ path('visitor_authentification_forgot_password_request') }}">

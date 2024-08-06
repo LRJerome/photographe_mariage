@@ -17,7 +17,7 @@ class CategoryPublicController extends AbstractController
     // '/category/{id}' est l'URL, 'category_show' est le nom de la route.
     // 'methods' spécifie que cette route ne répond qu'aux requêtes GET.
     // 'requirements' s'assure que l'id est bien un nombre.
-    #[Route('/category/{id}', name: 'category_show', methods: ['GET'], requirements: ['id' => '\d+'])]
+    #[Route('/admin/category/{id}', name: 'category_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     
     // Ma méthode pour afficher les photos d'une catégorie.
     // Elle prend en paramètre l'id de la catégorie et l'EntityManager de Doctrine.

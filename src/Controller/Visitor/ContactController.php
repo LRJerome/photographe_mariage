@@ -1,9 +1,9 @@
 <?php
+
+// Je définis le namespace de mon controller
 namespace App\Controller\Visitor;
 
-
-
-
+// Importation des classes nécessaires pour le contrôleur
 use DateTimeImmutable;
 use App\Entity\Contact;
 use App\Form\ContacFormType;
@@ -18,8 +18,11 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
+// Définition de la classe ExemplesController qui hérite de AbstractController
 class ContactController extends AbstractController
 {
+
+    // Annotation de la route pour l'URL '/contact' avec le nom de la route 'app_contact', accessible via GET et POST
     #[Route('/contact', name: 'app_contact', methods:['GET','POST'])]
 public function contact(Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
 {

@@ -1,7 +1,10 @@
 <?php
+// Ce controller gère toutes les opérations liées aux catégories dans la partie admin du site.
+// Il permet de lister, créer, éditer et supprimer des catégories, ainsi que de gérer les images associées.
+
 namespace App\Controller\Admin\Category;
 
-
+// Importation des classes nécessaires
 use App\Entity\Photos;
 use DateTimeImmutable;
 use App\Entity\Category;
@@ -20,63 +23,64 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-
 class CategoryController extends AbstractController
 {
-    // Constructeur avec injection de dépendances
+    // Le constructeur utilise l'injection de dépendances pour récupérer les services dont on a besoin
     public function __construct(
-        private EntityManagerInterface $em,
-        private CategoryRepository $categoryRepository,
-        private SluggerInterface $slugger
+        private EntityManagerInterface $em, // Pour interagir avec la base de données
+        private CategoryRepository $categoryRepository, // Pour effectuer des requêtes sur les catégories
+        private SluggerInterface $slugger // Pour créer des slugs (utile pour les noms de fichiers)
     ) {
     }
 
-    // Route pour afficher la liste des catégories
+    // Cette route affiche la liste de toutes les catégories
     #[Route('/admin/category/list', name: 'admin_category_index', methods: ['GET'])]
-public function index(): Response
-{
-    $categories = $this->categoryRepository->findAll();
-    $categoryCount = $this->categoryRepository->countCategories();
+    public function index(): Response
+    {
+        // On récupère toutes les catégories
+        $categories = $this->categoryRepository->findAll();
+        // On compte le nombre total de catégories
+        $categoryCount = $this->categoryRepository->countCategories();
 
-            // Rendu de la vue avec toutes les catégories
+        // On renvoie la vue avec les données
         return $this->render('pages/admin/category/index.html.twig', [
             'categories' => $categories,
-        'categoryCount' => $categoryCount,
-    ]);
+            'categoryCount' => $categoryCount,
+        ]);
     }
 
-    // Route pour créer une nouvelle catégorie
+    // Cette route permet de créer une nouvelle catégorie
     #[Route('/admin/category/create', name: 'admin_category_create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
-        // creation d'un chiffre aleatoir pour url unique
+        // On crée un nombre aléatoire pour avoir une URL unique
         $date = new DateTimeImmutable();
         $timestamp = $date->getTimestamp();
         $secretKey = $timestamp *  rand(1, 10);
         
-        // Création d'une nouvelle instance de Category
+        // On crée une nouvelle instance de Category
         $category = new Category();
-        // Création du formulaire
+        // On crée le formulaire
         $form = $this->createForm(CategoryFormType::class, $category);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // Définition des dates de création et de mise à jour
+            // On définit les dates de création et de mise à jour
             $category->setCreatedAt(new DateTimeImmutable());
             $category->setUpdatedAt(new DateTimeImmutable());
             $category->setSecretKey($secretKey);
             
-            // Persistance de la catégorie pour obtenir un ID
+            // On persiste la catégorie pour obtenir un ID
             $this->em->persist($category);
             $this->em->flush();
             
-            // Récupération des fichiers image
+            // On récupère les fichiers image
             $imageFiles = $form->get('imageFiles')->getData();
             
             if ($imageFiles) {
                 foreach ($imageFiles as $imageFile) {
                     try {
-                        // Traitement de chaque image
+                        // On traite chaque image
                         $photo = $this->handleImageUpload($category, $imageFile);
                         $this->em->persist($photo);
                         $category->addPhoto($photo);
@@ -86,33 +90,33 @@ public function index(): Response
                 }
             }
             
-            // Sauvegarde des photos
+            // On sauvegarde les photos
             $this->em->flush();
             $this->em->refresh($category);
 
-            // Message de succès et redirection
+            // On ajoute un message de succès et on redirige
             $this->addFlash("success", "La nouvelle catégorie a été ajoutée avec succès.");
             return $this->redirectToRoute("admin_category_index");
         }
         
-        // Rendu du formulaire de création
+        // Si le formulaire n'est pas soumis ou pas valide, on affiche le formulaire
         return $this->render('pages/admin/category/create.html.twig', [
             "form" => $form->createView()
         ]);
     }
 
-    // Route pour éditer une catégorie existante
+    // Cette route permet d'éditer une catégorie existante
     #[Route('/admin/category/{id<\d+>}/edit', name: 'admin_category_edit', methods: ['GET', 'POST'])]
     public function edit(Category $category, Request $request): Response {
-        // Création du formulaire d'édition
+        // On crée le formulaire d'édition
         $form = $this->createForm(CategoryFormType::class, $category);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // Mise à jour de la date de modification
+            // On met à jour la date de modification
             $category->setUpdatedAt(new DateTimeImmutable());
 
-            // Gestion des photos existantes
+            // On gère les photos existantes
             if ($form->has('existingPhotos')) {
                 $existingPhotos = $form->has('existingPhotos') ? $form->get('existingPhotos')->getData() : [];
                 foreach ($category->getPhotos() as $photo) {
@@ -123,7 +127,7 @@ public function index(): Response
                 }
             }
 
-            // Gestion des nouvelles photos
+            // On gère les nouvelles photos
             if ($form->has('imageFiles')) {
                 $imageFiles = $form->get('imageFiles')->getData();
                 if ($imageFiles) {
@@ -139,33 +143,33 @@ public function index(): Response
                 }
             }
 
-            // Sauvegarde des modifications
+            // On sauvegarde les modifications
             $this->em->flush();
             $this->em->refresh($category);
         
-            // Message de succès et redirection
+            // On ajoute un message de succès et on redirige
             $this->addFlash("success", "La catégorie a été modifiée avec succès.");
             return $this->redirectToRoute("admin_category_index");
         }
-    
-        // Rendu du formulaire d'édition
+
+        // Si le formulaire n'est pas soumis ou pas valide, on affiche le formulaire d'édition
         return $this->render("pages/admin/category/edit.html.twig", [
             "form" => $form->createView(),
             "category" => $category
         ]);
     }
 
-    // Route pour supprimer une catégorie
+    // Cette route permet de supprimer une catégorie
     #[Route('/admin/category/{id<\d+>}/delete', name: 'admin_category_delete', methods: ['POST'])]
     public function delete(Category $category, Request $request): Response
     {
-        // Vérification du jeton CSRF
+        // On vérifie le jeton CSRF pour la sécurité
         if ($this->isCsrfTokenValid("delete_category_" . $category->getId(), $request->request->get('csrf_token'))) {
-            // Suppression de toutes les photos de la catégorie
+            // On supprime toutes les photos de la catégorie
             foreach ($category->getPhotos() as $photo) {
                 $this->removePhoto($photo);
             }
-            // Suppression de la catégorie
+            // On supprime la catégorie
             $this->em->remove($category);
             $this->em->flush();
 
@@ -175,40 +179,40 @@ public function index(): Response
         return $this->redirectToRoute("admin_category_index");
     }
 
-    // Méthode pour gérer l'upload d'une image
+    // Cette méthode privée gère l'upload d'une image
     private function handleImageUpload(Category $category, UploadedFile $imageFile): Photos
     {
-        // Génération d'un nom de fichier sécurisé
+        // On génère un nom de fichier sécurisé
         $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
         $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
 
-        // Vérification que la catégorie a un ID
+        // On vérifie que la catégorie a un ID
         if (!$category->getId()) {
             throw new \Exception("La catégorie doit être persistée avant d'ajouter des photos.");
         }
 
-        // Définition du répertoire de la catégorie
+        // On définit le répertoire de la catégorie
         $categoryDirectory = $this->getParameter('photos_base_directory') . '/' . $category->getId();
 
         try {
-            // Création du répertoire s'il n'existe pas
+            // On crée le répertoire s'il n'existe pas
             if (!is_dir($categoryDirectory)) {
                 mkdir($categoryDirectory, 0777, true);
             }
 
-            // Déplacement du fichier uploadé
+            // On déplace le fichier uploadé
             $imageFile->move(
                 $categoryDirectory,
                 $newFilename
             );
             
-            // Création d'une nouvelle instance de Photos
+            // On crée une nouvelle instance de Photos
             $photo = new Photos();
             $photo->setImageName($newFilename);
             $photo->setCategory($category);
             
-            // Définition du chemin relatif de l'image
+            // On définit le chemin relatif de l'image
             $relativePath = 'Images/Mariages/' . $category->getId() . '/' . $newFilename;
             $photo->setAdress($relativePath);
             
@@ -218,47 +222,39 @@ public function index(): Response
         }    
     }
 
-    // Méthode pour supprimer une photo
+    // Cette méthode privée supprime une photo
     private function removePhoto($photo): void
     {
-        // Création d'une instance de Filesystem
+        // On crée une instance de Filesystem
         $filesystem = new Filesystem();
         
-        // Construction du chemin complet du fichier
+        // On construit le chemin complet du fichier
         $filePath = $this->getParameter('kernel.project_dir') . '/public/' . $photo->getAdress();
         
-        // Récupération du chemin du dossier parent
+        // On récupère le chemin du dossier parent
         $directoryPath = dirname($filePath);
 
         try {
-            // Suppression du fichier s'il existe
+            // On supprime le fichier s'il existe
             if ($filesystem->exists($filePath)) {
                 $filesystem->remove($filePath);
             }
 
-            // Vérification si le dossier est vide
+            // On vérifie si le dossier est vide
             if (is_dir($directoryPath) && count(glob("$directoryPath/*")) === 0) {
-                // Suppression du dossier s'il est vide
+                // On supprime le dossier s'il est vide
                 $filesystem->remove($directoryPath);
             }
         } catch (IOExceptionInterface $exception) {
-            // Gestion des erreurs lors de la suppression
+            // On gère les erreurs lors de la suppression
             throw new \Exception("Erreur lors de la suppression : " . $exception->getMessage());
         }
 
-        // Suppression de l'entité Photo de la base de données
+        // On supprime l'entité Photo de la base de données
         $this->em->remove($photo);
     }
-    // #[Route("/images/list/{secretKey<\d+>}", name: "images_list")]
-    // public function listImages()
-    // {
-    //     $imagesDir = $this->getParameter('kernel.project_dir') . '/public/Images/Originales';
-    //     $images = array_values(array_diff(scandir($imagesDir), array('..', '.')));
-        
-    
-    //     return new JsonResponse($images);
-    // }
 
+    // Cette route API renvoie la liste des images pour une catégorie ou toutes les catégories
     #[Route('/Images/Mariages/{categoryID?}', name: 'api_images')]
     public function getImages(?string $categoryId = null): JsonResponse
     {
@@ -284,7 +280,7 @@ public function index(): Response
                     }
                 }
             } else {
-                // Si aucune catégorie n'est spécifiée, retournez toutes les catégories
+                // Si aucune catégorie n'est spécifiée, on retourne toutes les catégories
                 $finder->directories()->in($baseDirectory);
                 foreach ($finder as $categoryDir) {
                     $categoryId = $categoryDir->getFilename();
@@ -313,6 +309,7 @@ public function index(): Response
         return $this->json($images);
     }
 
+    // Cette route API renvoie les informations d'une catégorie spécifique
     #[Route('/api/category/{id}', name: 'api_category_info', methods: ['GET'])]
     public function getCategoryInfo(int $id): JsonResponse
     {
@@ -328,5 +325,3 @@ public function index(): Response
         ]);
     }
 }
-
-

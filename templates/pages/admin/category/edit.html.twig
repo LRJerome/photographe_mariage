@@ -49,12 +49,13 @@
 				<div class="mb-3">
 					<label for="">
 						Date du mariage
+						<span class="text-danger">*</span>
 					</label>
 					<div class="text-danger">{{form_errors(form.weddingDateAt)}}</div>
 					{{form_widget(form.weddingDateAt, {'attr':{'class':'formulaire form-control'}})}}
-				</div>
-				{# champ pour la date du mariage #}
-				{# ajout test visualisation images #}
+				</div>{# fin champ pour la date du mariage #}
+				
+				{#  visualisation images #}
 				{% if category is defined and category.photos is not empty %}
 					{# Titre de la section des photos #}
 					<h3 class="mt-4 mb-3">Photos présentes pour ce mariage :</h3>
@@ -91,7 +92,7 @@
 					</div>
 				{% endif %}
 
-				{# ajout test visualisation images #}
+				
 				<div class=" mb-3 text-center">
 					<label for="category_form_photos">
 						Ajouter une ou des photos

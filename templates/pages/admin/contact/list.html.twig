@@ -5,103 +5,104 @@
 {% endblock %}
 
 
-
 {% block main %}
-    <div class="fs-4">
-        <h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Liste des utilisateurs et contacts</h2>
-    </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="head_text text-center p-3 my-5 fs-1 border border-dark rounded shadow">Liste des utilisateurs et contacts</h2>
+			</div>
+		</div>
 
-    <div class="col-md-12 col-lg-12 mx-auto table-responsive">
-        <table class="table table-striped table-hover table-bordered text-center border border-dark">
-            <thead class="head_text">
-                <tr>
-                    <th>Type</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>Adresse E-mail</th>
-                    <th>Téléphone</th>
-                    <th>Adresse / Message reçu</th>
-                    <th>Date de création</th>
-                    <th>Suppression</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                    <tr>
-                        <td><i class="fa-regular fa-user"></i> Utilisateur</td>
-                        <td>{{ user.firstName }}</td>
-                        <td>{{ user.lastName }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.phoneNumber }}</td>
-                        <td>{{ user.adress }}</td>
-                        <td>{{ user.createdAt|date('d-m-Y') }}</td>
-                        <td>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <div class="btn-group custom-btn-group" role="group">
-                                    <form method="POST" action="{{ path('admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('delete_user_' ~ user.id) }}">
-                                        <button type="submit" class="border border-dark btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
-                                            <i class="fas fa-trash-alt"></i>
-                                            Supprimer
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                {% for contact in contacts %}
-                    <tr>
-                        <td><i class="fa-regular fa-message"></i> Contact</td>
-                        <td>{{ contact.first_name }}</td>
-                        <td>{{ contact.last_name }}</td>
-                        <td>{{ contact.email }}</td>
-                        <td>{{ contact.phone ? contact.phone : '---' }}</td>
-                        <td>
-                            {% if contact.message %}
-                                <i class="fa-regular fa-thumbs-up"></i>
-                            {% else %}
-                                ---
-                            {% endif %}
-                        </td>
-                        <td>{{ contact.created_at|date('d-m-Y') }}</td>
-                        <td>
-                            <div class="btn-group custom-btn-group" role="group">
-                                <form method="POST" action="{{ path('admin_contact_delete', {'id': contact.id}) }}" onsubmit="return confirm('Confirmer la suppression?');">
-                                    <input type="hidden" name="_method" value="POST">
-                                    <input type="hidden" name="csrf_token" value="{{ csrf_token('delete_contact_' ~ contact.id) }}">
-                                    <button type="submit" class="border border-dark btn bg-danger btn-sm custom-rounded mx-1" title="Supprimer">
-                                        <i class="fas fa-trash-alt"></i>
-                                        Supprimer
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+		<div class="row">
+			<div class="col-12">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover table-bordered text-center border border-dark">
+						<thead class="head_text">
+							<tr>
+								<th>Type</th>
+								<th>Prénom</th>
+								<th>Nom</th>
+								<th>Adresse E-mail</th>
+								<th>Téléphone</th>
+								<th>Adresse / Message reçu</th>
+								<th>Date de création</th>
+								<th>Suppression</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in users %}
+								<tr>
+									<td>
+										<i class="fa-regular fa-user"></i>
+										Utilisateur</td>
+									<td>{{ user.firstName }}</td>
+									<td>{{ user.lastName }}</td>
+									<td>{{ user.email }}</td>
+									<td>{{ user.phoneNumber }}</td>
+									<td>{{ user.adress }}</td>
+									<td>{{ user.createdAt|date('d-m-Y') }}</td>
+									<td>
+										<form method="POST" action="{{ path('admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+											<input type="hidden" name="_token" value="{{ csrf_token('delete_user_' ~ user.id) }}">
+											<button type="submit" class="btn bg-danger btn-sm border border-dark w-100" title="Supprimer">
+												<i class="fas fa-trash-alt"></i>
+												Supprimer
+											</button>
+										</form>
+									</td>
+								</tr>
+							{% endfor %}
+							{% for contact in contacts %}
+								<tr>
+									<td>
+										<i class="fa-regular fa-message"></i>
+										Contact</td>
+									<td>{{ contact.first_name }}</td>
+									<td>{{ contact.last_name }}</td>
+									<td>{{ contact.email }}</td>
+									<td>{{ contact.phone ? contact.phone : '---' }}</td>
+									<td>
+										{% if contact.message %}
+											<i class="fa-regular fa-thumbs-up"></i>
+										{% else %}
+											---
+										{% endif %}
+									</td>
+									<td>{{ contact.created_at|date('d-m-Y') }}</td>
+									<td></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 
-    <div class="mt-4 text-center ">
-    <h3>Liste des adresses e-mail pour la liste de diffusion</h3>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Adresses e-mail des utilisateurs</h4>
-            <textarea class="border border-dark rounded form-control formulaire " rows="10" readonly>
-{% for user in users %}{{ user.email }}
-{% endfor %}
-            </textarea>
+		<div class="row mt-5">
+			<div class="col-12 text-center">
+				<h2>Liste des adresses e-mail pour la liste de diffusion</h2>
+			</div>
+		</div>
+		<div class="row mt-3">
+    <div class="col-md-6 mb-3">
+        <div class="card border-dark">
+            <h3 class="card-header border-dark rounded-top mb-0 text-center formulaire">Adresses e-mail des utilisateurs</h3>
+            <div class="card-body p-0">
+                <textarea class="form-control border-0 rounded-bottom formulaire" rows="10" readonly>{% for user in users %}
+{{ user.email }}
+{% endfor %}</textarea>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h4>Adresses e-mail des contacts</h4>
-            <textarea class="border border-dark rounded form-control formulaire " rows="10" readonly>
-{% for contact in contacts %}{{ contact.email }}
-{% endfor %}
-            </textarea>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card border-dark">
+            <h3 class="card-header border-dark rounded-top mb-0 text-center formulaire">Adresses e-mail des contacts</h3>
+            <div class="card-body p-0">
+                <textarea class="form-control border-0 rounded-bottom formulaire" rows="10" readonly>{% for contact in contacts %}
+{{ contact.email }}
+{% endfor %}</textarea>
+            </div>
         </div>
     </div>
 </div>
-
-
-{% endblock %}
+	{% endblock %}

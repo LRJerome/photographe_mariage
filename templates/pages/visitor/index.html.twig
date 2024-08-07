@@ -13,15 +13,28 @@
 
 
 	<div class="fs-4 ">
+		{% if is_granted('ROLE_USER') %}
+			<div class="container my-5">
+				<div class="row justify-content-center ">
+					<div class="col-6">
+						<div class="border border-dark rounded text-center head_text fs-2 p-2">
 
+							<a class="nav-link " href="{{ path('user_galleries') }}">Pour voir vos photos : cliquez ici</a>
 
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endif %}
 		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Capturez l'essence de votre amour avec Jérôme, photographe de mariage passionné</h2>
+
 		<div class="row">
+
 
 			<div class="col-auto text-center m-auto">
 				<h2 class="text-center fs-1 m-5">A propos de nous :</h2>
 				<p class="my-5">
-					Bienvenue dans l'univers enchanteur de Jérôme, photographe de mariage expert dans l'art de saisir les moments les plus précieux de votre journée spéciale. Avec un œil aiguisé pour les détails et une sensibilité unique, Jérôme transforme chaque instant en un souvenir impérissable.Depuis plus de 10 ans, Jérôme parcourt la France pour immortaliser l'amour sous toutes ses formes. Son approche mêle habilement le photojournalisme et le portrait artistique, créant ainsi des images à la fois authentiques et esthétiquement sublimes. Chaque photo raconte une histoire, votre histoire...
+					Bienvenue dans l'univers de Jérôme, photographe de mariage expert dans l'art de saisir les moments les plus précieux de votre journée spéciale. Avec un œil aiguisé pour les détails et une sensibilité unique, Jérôme transforme chaque instant en un souvenir impérissable.Depuis plus de 10 ans, Jérôme parcourt la France pour immortaliser l'amour sous toutes ses formes. Son approche mêle habilement le photojournalisme et le portrait artistique, créant ainsi des images à la fois authentiques et esthétiquement sublimes. Chaque photo raconte une histoire, votre histoire...
 				</p>
 
 			</div>
@@ -55,8 +68,9 @@
 			<div class="col-auto  text-center m-auto">
 				<p class="my-5">
 					Sur ce site, plongez dans une galerie soigneusement sélectionnée de ses plus belles réalisations. Des regards complices aux éclats de rire spontanés, en passant par les détails minutieux de votre décoration, chaque image témoigne de l'engagement de Jérôme à capturer l'essence même de votre journée.</p>
-				<p class="my-5"><ul>
-					<strong>Nos offres :</strong> 
+				<p class="my-5">
+					<ul>
+						<strong>Nos offres :</strong>
 						<li class="list-unstyled">- Reportages de mariage sur mesure</li>
 						<li class="list-unstyled">- Séances d'engagement pré-mariage</li>
 						<li class="list-unstyled">- Albums photo personnalisés de haute qualité</li>

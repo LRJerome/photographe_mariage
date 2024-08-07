@@ -60,7 +60,8 @@ class Category
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: false)]
+    #[Assert\NotBlank(message: "La date de mariage est obligatoire.")]
     private ?\DateTimeImmutable $weddingDateAt = null;
 
     #[ORM\Column(length: 255)]

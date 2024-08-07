@@ -1,67 +1,80 @@
 {% extends 'themes/base.html.twig' %}
 
-{% block title %}Page d'exemples photo
+{% block title %}Page de vos photos
 {% endblock %}
 
-{% block description %}Voici la page des exemples de photos de mariage
+{% block description %}Voici la page de vos photos de mariage
 {% endblock %}
 
-{% block keywords %}exemples, mariage, contact
+{% block keywords %}photos, bonheur, mariage, contact
 {% endblock %}
 
 {% block main %}
+	<div class="mx-auto col-auto">
+		<div class="w-75 mx-auto d-flex flex-column align-items-center mt-5">
+			<section id="pageContent">
+				{% if categories is defined and categories is not empty %}
+					{# Affichage de la liste des catégories #}
+					<h2 class="text-center m-5 fs-2">Voici vos galeries !</h2>
+					{% for category in categories %}
+						<div class="mb-4 border border-dark rounded ">
 
-<div class="mx-auto col-auto">
-    <div class="w-75 mx-auto d-flex flex-column align-items-center mt-5">
-        <section id="pageContent">
-            <main class="row" id="singleGallery">
-                {# Titre de la galerie #}
-                <h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1"></h2>
-                {# <p>{{category.weddingDateAt}}</p> #}
+							<h2 class="head_text text-center p-3 border-bottom border-dark rounded shadow fs-1">{{ category.name }}</h2>
+							<div class="w-75 text-center fs-3 mt-4 mt-5 mx-auto">
+								<p class="text-center">{{ category.description|nl2br }}</p>
+							</div>
+							<div class="text-center">
+								<a href="{{ path('app_mariages', {'secretKey': category.secretKey}) }}" class="border border-dark btn head_text btn-block btn-lg my-3 fs-3">Voir la galerie</a>
+							</div>
 
-                {# Affichage de la description de la catégorie #}
-                <div class="w-75 text-center fs-3 mt-4 mt-5 mx-auto">
-                    <p class="text-center">{{ category.description|nl2br }}</p>
-                </div>
+						</div>
 
-                {# Conteneur pour l'image principale #}
-                <figure id="galleryContainer"><img src="" alt=""/></figure>
+					{% endfor %}
+					<div class="text-center m-5">
+						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-1" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
+					</div>
+				{% elseif category is defined %}
+					{# Affichage d'une seule catégorie #}
+					<main class="row" id="singleGallery">
+						<h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1">{{ category.name }}</h2>
+						<div class="w-75 text-center fs-3 mt-4 mt-5 mx-auto">
+							<p class="text-center">{{ category.description|nl2br }}</p>
+						</div>
+						<figure id="galleryContainer"><img src="" alt=""/></figure>
+						<ul class="list-unstyled"></ul>
+						{% if is_granted('ROLE_USER') %}
+							<div class="d-flex justify-content-center mt-3 me-3 p-5">
+								<a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
+									Télécharger les photos de cette page
+								</a>
+							</div>
+						{% endif %}
+					</main>
 
-                {# Liste des miniatures (sera remplie par JavaScript) #}
-                <ul class="list-unstyled"></ul>
+					{# Modal pour afficher l'image en grand #}
+					<div id="imageModal" class="modal_img">
+						<button id="startSlideshow" class="text-dark next border btn head_text btn-block btn-lg mx-5 mt-n5">Démarrer le diaporama</button>
+						<span class="close">&times;</span>
+						<img class="modal-content" id="modalImage">
+						<a class="prev" id="prevImage">&#10094;</a>
+						<a class="next" id="nextImage">&#10095;</a>
+						<div id="watermark">Propriètée du Photographe,<br>copie INTERDITE</div>
+					</div>
 
-                {# Boutons pour retourner à l'accueil et télécharger toutes les photos #}
-                <div class="d-flex justify-content-center mt-3 me-3 p-5">
-                    
-                    <a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
-                        Télécharger les photos de cette page
-                    </a>
-                </div>
-            </main>
-        </section>
-    </div>
-
-    {# Modal pour afficher l'image en grand #}
-	<div id="imageModal" class="modal_img">
-		<button id="startSlideshow" class="text-dark next border btn head_text btn-block btn-lg mx-5 mt-n5">Démarrer le diaporama</button>
-		<span class="close">&times;</span>
-		<img class="modal-content" id="modalImage">
-		<a class="prev" id="prevImage">&#10094;</a>
-		<a class="next" id="nextImage">&#10095;</a>
-		<div id="watermark">Propriètée du Photographe,
-			<br>copie INTERDITE</div>
-
+					<script>
+						const imagesPath = "{{ asset('Images/Mariages/') }}";
+const categoryId = "{{ category.id }}";
+const categorySecretKey = "{{ category.secretKey }}";
+const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
+					</script>
+					<script src="{{ asset('js/jsMariages.js') }}"></script>
+				{% else %}
+					<p class="text-center fs-3">Aucune galerie trouvée.</p>
+					<div class="text-center m-5">
+						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-1" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
+					</div>
+				{% endif %}
+			</section>
+		</div>
 	</div>
-</div>
-
-<script>
-    {# Variables JavaScript pour le chemin des images et l'ID de la catégorie #}
-    const imagesPath = "{{ asset('Images/Mariages/') }}";
-    const categoryId = "{{ category.id }}";
-    const categorySecretKey = "{{ category.secretKey }}";
-    const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
-</script>
-            
-{# Inclusion du script JavaScript pour la galerie #}
-<script src="{{ asset('js/jsMariages.js') }}"></script>
 {% endblock %}

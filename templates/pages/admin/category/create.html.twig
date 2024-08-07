@@ -6,21 +6,20 @@
 
 
 {% block main %}
-<div class="fs-4">
-	<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Ajouter un mariage</h2>
-</div>
-<div class="container my-5 border border-dark rounded shadow p-3 head_text ">
-	<div class="d-flex justify-content-center ">
-
-		<h2 class=" d-inline-block text-center p-2">Ajoutez les nouveaux mariages ici</h2>
+	<div class="fs-4">
+		<h2 class="head_text text-center p-3 m-5 fs-1 border border-dark rounded shadow">Ajouter un mariage</h2>
 	</div>
-	<div class="row">
+	<div class="container my-5 border border-dark rounded shadow p-3 head_text ">
+		<div class="d-flex justify-content-center ">
 
-		<div
-			class="col-md-8 col-lg-6 mx-auto">
+			<h2 class=" d-inline-block text-center p-2">Ajoutez les nouveaux mariages ici</h2>
+		</div>
+		<div class="row">
+
+			<div class="col-md-8 col-lg-6 mx-auto">
 
 
-{{form_start(form)}}
+				{{form_start(form)}}
 				<div class="mb-3">
 					<label for="category_form_name">
 						Nom
@@ -35,7 +34,7 @@
 						<span class="text-danger">*</span>
 					</label>
 					<div class="text-danger">
-					{{form_errors(form.user)}}
+						{{form_errors(form.user)}}
 					</div>
 					{{form_widget(form.user, {'attr':{'class':'formulaire form-control'}})}}
 				</div>
@@ -68,9 +67,7 @@
 				</div>
 				{{form_end(form)}}
 
-
-			{# ---------------debut modif------------------------- #}
+			</div>
 		</div>
 	</div>
-</div>
 {% endblock main %}

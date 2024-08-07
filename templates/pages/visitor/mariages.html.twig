@@ -15,23 +15,23 @@
 			<section id="pageContent">
 				{% if categories is defined and categories is not empty %}
 					{# Affichage de la liste des catégories #}
-                    <h2 class="text-center m-5 fs-2">Voici vos galeries !</h2>
+					<h2 class="text-center m-5 fs-2">Voici vos galeries !</h2>
 					{% for category in categories %}
-						<div class="mb-4">
-                        
-							<h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1">{{ category.name }}</h2>
+						<div class="mb-4 border border-dark rounded ">
+
+							<h2 class="head_text text-center p-3 border-bottom border-dark rounded shadow fs-1">{{ category.name }}</h2>
 							<div class="w-75 text-center fs-3 mt-4 mt-5 mx-auto">
 								<p class="text-center">{{ category.description|nl2br }}</p>
 							</div>
 							<div class="text-center">
-								<a href="{{ path('app_mariages', {'secretKey': category.secretKey}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5 fs-1">Voir la galerie</a>
+								<a href="{{ path('app_mariages', {'secretKey': category.secretKey}) }}" class="border border-dark btn head_text btn-block btn-lg my-3 fs-3">Voir la galerie</a>
 							</div>
 
 						</div>
 
 					{% endfor %}
 					<div class="text-center m-5">
-						<a class="border border-dark btn head_text btn-block btn-lg mx-5 " href="{{path('app_welcome')}}">Retour à l'acceuil</a>
+						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-1" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
 					</div>
 				{% elseif category is defined %}
 					{# Affichage d'une seule catégorie #}
@@ -42,11 +42,13 @@
 						</div>
 						<figure id="galleryContainer"><img src="" alt=""/></figure>
 						<ul class="list-unstyled"></ul>
-						<div class="d-flex justify-content-center mt-3 me-3 p-5">
-							<a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
-								Télécharger les photos de cette page
-							</a>
-						</div>
+						{% if is_granted('ROLE_USER') %}
+							<div class="d-flex justify-content-center mt-3 me-3 p-5">
+								<a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
+									Télécharger les photos de cette page
+								</a>
+							</div>
+						{% endif %}
 					</main>
 
 					{# Modal pour afficher l'image en grand #}
@@ -67,9 +69,9 @@ const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
 					</script>
 					<script src="{{ asset('js/jsMariages.js') }}"></script>
 				{% else %}
-					<p class="text-center fs-4">Aucune galerie trouvée.</p>
+					<p class="text-center fs-3">Aucune galerie trouvée.</p>
 					<div class="text-center m-5">
-						<a class="border border-dark btn head_text btn-block btn-lg mx-5 " href="{{path('app_welcome')}}">Retour à l'acceuil</a>
+						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-1" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
 					</div>
 				{% endif %}
 			</section>

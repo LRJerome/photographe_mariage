@@ -12,13 +12,13 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 // Cette annotation indique que toutes les routes de ce controller commenceront par '/admin'
-#[Route('/admin')]
+// #[Route('')]
 class HomeController extends AbstractController
 {
     // Cette méthode gère la page d'accueil de l'admin
     // L'annotation Route définit l'URL et le nom de la route
     // 'methods:['GET']' spécifie que cette route ne répond qu'aux requêtes GET
-    #[Route('/home/', name: 'admin_home_index', methods:['GET'])]
+    #[Route('/admin/home/', name: 'admin_home_index', methods:['GET'])]
     public function index(StatisticsService $statisticsService): Response
     {
         // Ici, on utilise l'injection de dépendances pour obtenir le service StatisticsService

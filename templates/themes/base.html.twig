@@ -58,38 +58,37 @@
 					</button>
 					<div class="collapse navbar-collapse mx-4" id="navbarNav">
 						<ul class="navbar-nav">
-							<li class="p-2">
+							<li class=" btn btn-lg border-dark F5EBE0 m-2 p-2">
 								<a aria-current="page" href="{{path('app_exemples')}}">Exemples</a>
 							</li>
 							
-							<li class="p-2">
+							<li class=" btn btn-lg border-dark F5EBE0 m-2 p-2">
 								<a href="{{path('app_contact')}}">Contact</a>
 							</li>
 						</ul>
 						<ul class="navbar-nav ms-auto">
 							{% if app.user %}
-								<li class="p-2">
-									Bonjour :
-									{{app.user.firstName}}
-									{{app.user.lastName}}
-								</li>
-								{% if is_granted ('ROLE_ADMIN') %}
-									<li class="nav-item">
-										<a class="nav-link" href="{{ path('admin_home_index') }}">Espace admin</a>
-									</li>
-								{% endif %}
-								
-								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-								</li>
-							{% else %}
-								<li class="p-2">
-									<a href="{{ path('visitor_authentification_login') }}">Connexion</a>
-								</li>
-								<li class="p-2">
-									<a href="{{ path('visitor_register') }}">Inscription</a>
-								</li>
-							{% endif %}
+    
+    <li class="nav-item p-3"> Bonjour {{ app.user.firstName }} {{ app.user.lastName }}</li>
+	<li><a class="btn btn-lg border-dark F5EBE0 m-2" href=" {{ path('app_user_profile_show') }}" role="button">Votre profil</a></li>
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a class="btn btn-lg border-dark F5EBE0 m-2" href="{{ path('admin_home_index') }}">Espace admin</a>
+        </li>
+    {% endif %}
+    <li class="nav-item">
+        <a class="btn btn-lg border-dark F5EBE0 m-2" href="{{ path('app_logout') }}">Déconnexion</a>
+    </li>
+{% else %}
+    <li class="nav-item">
+        <a href="{{ path('visitor_authentification_login') }}" class="nav-link">Connexion</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ path('visitor_register') }}" class="nav-link">Inscription</a>
+    </li>
+{% endif %}
+
+
 						</ul>
 					</div>
 				</div>

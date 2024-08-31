@@ -49,7 +49,7 @@ class MailerController extends AbstractController
         $prenom = $user->getFirstName();
         $nom = $user->getLastName();
 
-        // Je vérifie si l'email est valide avec une fonction PHP
+        // Je vérifie si l'email est valide
         if (!filter_var($destinataire, FILTER_VALIDATE_EMAIL)) {
             return new JsonResponse(['message' => 'Adresse email invalide'], 400);
         }

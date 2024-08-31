@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 // Je crée ma classe InscriptionController qui étend AbstractController
-class InscriptionController extends AbstractController
+class Old_InscriptionController extends AbstractController
 {
     // J'utilise l'attribut Route pour définir l'URL et le nom de ma route
     #[Route('/inscription', name: 'app_inscription')]

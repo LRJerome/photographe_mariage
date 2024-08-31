@@ -30,9 +30,7 @@
 						</div>
 
 					{% endfor %}
-					<div class="text-center m-5">
-						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-1" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
-					</div>
+					
 				{% elseif category is defined %}
 					{# Affichage d'une seule catégorie #}
 					<main class="row" id="singleGallery">
@@ -69,11 +67,12 @@ const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
 					</script>
 					<script src="{{ asset('js/jsMariages.js') }}"></script>
 				{% else %}
-					<p class="text-center fs-3">Aucune galerie trouvée.</p>
-					<div class="text-center m-5">
-						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-1" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
-					</div>
+					<p class="text-center fs-1">Vous n'avez aucunes galerie d'enregistrée, pour le moment.</p>
+					<p class="text-center fs-3">Revenez dans quelques jours.</p>
 				{% endif %}
+					<div class="text-center m-5">
+						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-3" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
+					</div>
 			</section>
 		</div>
 	</div>

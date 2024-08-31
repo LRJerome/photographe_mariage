@@ -1,0 +1,54 @@
+{% extends 'themes/base.html.twig' %}
+
+{% block title %}Profil de l'utilisateur
+{% endblock %}
+
+{% block description %}Voici la page pour visualiser le profil utilisateur
+{% endblock %}
+
+{% block keywords %}profil, utilisateur, mariage
+{% endblock %}
+
+
+{% block main %}
+	<div class=" head_text container my-5 border border-dark rounded shadow p-3 ">
+		<div class="d-flex justify-content-center ">
+			<h2 class=" d-inline-block text-center p-2 ">Bienvenu sur votre page de profil...</h2>
+		</div>
+	</div>
+	
+		<div class="table-responsive text-center w-50 mx-auto">
+			<table class="table table-striped table-hover table-bordered text-center border border-dark">
+				<tbody>
+					<tr>
+						<th>Votre prénom</th>
+						<td>{{ user.firstName }}</td>
+					</tr>
+					<tr>
+						<th>Votre Nom</th>
+						<td>{{ user.lastName }}</td>
+					</tr>
+					<tr>
+						<th>Votre E-mail</th>
+						<td>{{ user.email }}</td>
+					</tr>
+					<tr>
+						<th>Votre numéro de téléphone</th>
+						<td>{{ user.phoneNumber }}</td>
+					</tr>
+					<tr>
+						<th>Votre adresse postale</th>
+						<td>{{ user.adress }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	
+	<div class="d-flex justify-content-center mt-3 me-3 p-5">
+		<a href="{{ path('app_user_profile_edit') }}" class="border border-dark btn head_text btn-block btn-lg mx-5 fs-3">
+			Modifier
+		</a>
+	</div>
+	
+
+{% endblock %}

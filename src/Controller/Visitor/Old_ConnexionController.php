@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 // Ma classe ConnexionController hérite de AbstractController.
-class ConnexionController extends AbstractController
+class Old_ConnexionController extends AbstractController
 {
     // Cette annotation définit la route pour ma page de connexion.
     // L'URL sera '/connexion' et le nom de la route 'app_connexion'.

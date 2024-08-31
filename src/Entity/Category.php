@@ -139,17 +139,6 @@ class Category
     {
         return $this->photos;
     }
-    /*
-    public function addImage(Photos $photo): self
-    {
-        if (!$this->photos->contains($photo)) {
-            $this->photos[] = $photo;
-            $photo->setCategory($this);
-        }
-
-        return $this;
-    }
-    */
     // Méthode pour retirer une photo de la collection
     public function removePhoto($photo): self
     {

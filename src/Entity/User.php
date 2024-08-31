@@ -76,8 +76,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    #[Assert\NotBlank(groups: ['registration', 'password_change'])]
     #[Assert\NotCompromisedPassword (message:"Ce mot de passe n'est pas assez sécurisé !")]
-    #[Assert\NotBlank (message: "Le mot de passe est obligatoire!")]
     #[Assert\Length(
         max: 180,
         maxMessage: "Le mot de passe doit contenir un maximum de {{ limit }} caractères!",
@@ -85,7 +85,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Regex(
         pattern: '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/',
         match: true,
-        message: 'Le mot de passe doit contenir au minimum 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.'
+        message: 'Le mot de passe doit contenir au minimum 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.',
+        groups: ['registration', 'password_change']
     )]
     #[ORM\Column]
     private ?string $password = null;

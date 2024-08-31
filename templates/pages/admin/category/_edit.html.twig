@@ -1,0 +1,24 @@
+{% extends 'themes/base.html.twig' %}
+
+{% block title %}Profil de l'utilisateur
+{% endblock %}
+
+{% block description %}Voici la page pour modifier le profil utilisateur
+{% endblock %}
+
+{% block keywords %}Modification, profil, utilisateur, mariage
+{% endblock %}
+
+
+{% block main %}
+   <div class=" head_text container my-5 border border-dark rounded shadow p-3 ">
+		<div class="d-flex justify-content-center ">
+			<h2 class=" d-inline-block text-center p-2 ">Ici vous pouvez modifier vos coordonnées</h2>
+		</div>
+	</div>
+
+    {{ include('user_profile/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+
+    <a href="{{ path('app_user_profile_show') }}">Retour au profil utilisateur</a>
+
+{% endblock %}

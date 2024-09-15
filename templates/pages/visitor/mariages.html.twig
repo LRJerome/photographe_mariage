@@ -34,7 +34,7 @@
 				{% elseif category is defined %}
 					{# Affichage d'une seule catégorie #}
 					<main class="row" id="singleGallery">
-						<h2 class="head_text text-center p-3 border border-dark rounded shadow fs-1">{{ category.name }}</h2>
+						<h2 class="F5EBE0 text-center p-3 border border-dark rounded shadow fs-1">{{ category.name }}</h2>
 						<div class="w-75 text-center fs-3 mt-4 mt-5 mx-auto">
 							<p class="text-center">{{ category.description|nl2br }}</p>
 						</div>
@@ -61,9 +61,9 @@
 
 					<script>
 						const imagesPath = "{{ asset('Images/Mariages/') }}";
-const categoryId = "{{ category.id }}";
-const categorySecretKey = "{{ category.secretKey }}";
-const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
+						const categoryId = "{{ category.id }}";
+						const categorySecretKey = "{{ category.secretKey }}";
+						const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
 					</script>
 					<script src="{{ asset('js/jsMariages.js') }}"></script>
 				{% else %}

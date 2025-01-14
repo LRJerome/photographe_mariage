@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
   // Fonction pour désactiver le clic droit
   function disableRightClick(event) {
     event.preventDefault();
-    alert('Clic droit désactivé');
+    alert("Clic droit désactivé");
   }
 
   // Récupère la liste des images depuis le serveur
@@ -36,13 +36,18 @@ window.addEventListener("load", () => {
         let theLi = document.createElement("li");
         // Ajoute les classes Bootstrap aux éléments <li>
         theLi.classList.add(
-          "col-sm-12", "col-lg-6", "col-xl-4", "mb-4",
-          "d-flex", "justify-content-center", "g-4"
+          "col-sm-12",
+          "col-lg-6",
+          "col-xl-4",
+          "mb-4",
+          "d-flex",
+          "justify-content-center",
+          "g-4"
         );
         // Crée un nouvel élément img
         let theImg = document.createElement("img");
         // Définit la source de l'image
-        theImg.src = `images/Originales/${image}`;
+        theImg.src = `/Images/Originales/${image}`;
         // Ajoute un écouteur d'événement pour le clic sur l'image
         theImg.addEventListener("click", () => showSinglePict(index));
         // Change le curseur en pointeur au survol de l'image
@@ -80,13 +85,15 @@ window.addEventListener("load", () => {
     modal.style.display = "block";
 
     // Définir la source de l'image dans la modal comme celle de l'image cliquée
-    modalImg.src = `images/Originales/${image}`;
+    modalImg.src = `/Images/Originales/${image}`;
 
     // Afficher le filigrane
     watermark.style.display = "block";
 
     // Définir le texte du bouton de démarrage du diaporama
-    document.getElementById("startSlideshow").textContent = isAutoPlaying ? "Arrêter le diaporama" : "Démarrer le diaporama";
+    document.getElementById("startSlideshow").textContent = isAutoPlaying
+      ? "Arrêter le diaporama"
+      : "Démarrer le diaporama";
 
     // Sélectionner le bouton de fermeture (X) dans la modal
     let span = document.getElementsByClassName("close")[0];
@@ -129,7 +136,8 @@ window.addEventListener("load", () => {
     if (!isAutoPlaying) {
       isAutoPlaying = true;
       autoPlayInterval = setInterval(showNextImage, 2500); // Change d'image toutes les 2.5 secondes
-      document.getElementById("startSlideshow").textContent = "Arrêter le diaporama";
+      document.getElementById("startSlideshow").textContent =
+        "Arrêter le diaporama";
     } else {
       stopAutoPlay();
     }
@@ -139,7 +147,8 @@ window.addEventListener("load", () => {
   function stopAutoPlay() {
     isAutoPlaying = false;
     clearInterval(autoPlayInterval);
-    document.getElementById("startSlideshow").textContent = "Démarrer le diaporama";
+    document.getElementById("startSlideshow").textContent =
+      "Démarrer le diaporama";
   }
 
   // Ajouter des écouteurs d'événements pour les boutons de navigation
@@ -148,7 +157,7 @@ window.addEventListener("load", () => {
   document.getElementById("startSlideshow").onclick = startAutoPlay;
 
   // Désactiver le clic droit sur toute la page
-  document.addEventListener('contextmenu', disableRightClick, false);
+  document.addEventListener("contextmenu", disableRightClick, false);
 
   // Désactiver le glisser-déposer des images
   document.addEventListener(

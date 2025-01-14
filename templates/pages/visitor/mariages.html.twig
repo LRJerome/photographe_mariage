@@ -40,13 +40,6 @@
 						</div>
 						<figure id="galleryContainer"><img src="" alt=""/></figure>
 						<ul class="list-unstyled"></ul>
-						{% if is_granted('ROLE_USER') %}
-							<div class="d-flex justify-content-center mt-3 me-3 p-5">
-								<a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
-									Télécharger les photos de cette page
-								</a>
-							</div>
-						{% endif %}
 					</main>
 
 					{# Modal pour afficher l'image en grand #}
@@ -60,18 +53,24 @@
 					</div>
 
 					<script>
-						const imagesPath = "{{ asset('Images/Mariages/') }}";
-const categoryId = "{{ category.id }}";
-const categorySecretKey = "{{ category.secretKey }}";
-const categoryWeddingDateAt = {{ category.weddingDateAt.getTimestamp() }};
+						window.GALLERY_CONFIG = {
+							categoryId: "{{ category.id }}",
+							categorySecretKey: "{{ category.secretKey }}",
+							categoryWeddingDateAt: {{ category.weddingDateAt.getTimestamp() }},
+							imagesBasePath: "{{ asset('Images/Mariages') }}"
+						};
 					</script>
-					<script src="{{ asset('js/jsMariages.js') }}"></script>
 				{% else %}
 					<p class="text-center fs-1">Vous n'avez aucunes galerie d'enregistrée, pour le moment.</p>
 					<p class="text-center fs-3">Revenez dans quelques jours.</p>
 				{% endif %}
-					<div class="text-center m-5">
-						<a class="border border-dark btn head_text btn-block btn-lg mx-5 fs-3" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
+					<div class="d-flex justify-content-between mt-3 me-3 p-5">
+						<a class="border border-dark btn head_text btn-block btn-lg mx-5" href="{{path('app_welcome')}}">Retour à l'acceuil</a>
+						{% if is_granted('ROLE_USER') and category is defined %}
+							<a href="{{ path('telecharger_photos', {'categoryId': category.id}) }}" class="border border-dark btn head_text btn-block btn-lg mx-5">
+								Télécharger les photos de cette page
+							</a>
+						{% endif %}
 					</div>
 			</section>
 		</div>

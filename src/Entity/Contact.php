@@ -47,7 +47,7 @@ class Contact
         maxMessage: "Le numéro de téléphone ne peut pas dépasser {{ limit }} caractéres",
     )]
     #[Assert\Regex(
-        pattern: "/^[0-9\-\+\s\(\)]{,30}$/",
+        pattern: "/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/",
         match: true,
         message: 'Entrez un numéro de téléphone valide, svp.',
     )]

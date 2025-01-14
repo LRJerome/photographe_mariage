@@ -1,0 +1,365 @@
+/*  Mon nuancier de couleur se trouve être : /
+    - #EDEDE9 => Gris pâle
+    _ #D6CCC2 => Gris beige
+    _ #F5EBE0 => Pêche clair (Body)
+    _ #E3D5CA => Marron clair (navbar, footer)
+    _ #D5BDAF => Marron rosé
+*/
+
+/* Définit un arrière-plan Marron rosé et un texte rouge pour les éléments avec la classe bg-danger */
+.bg-danger {
+  background-color: #d5bdaf !important;
+  color: red;
+}
+
+html,
+body {
+  background-color: #f5ebe0; /* Définit la couleur de fond pour html et body */
+  font-family: "Junction", cursive; /* Définit la police principale */
+  height: 100%; /* Assure que html et body occupent 100% de la hauteur */
+}
+
+body {
+  display: grid; /* Utilise un layout en grille pour le body */
+  grid-template-rows: auto 1fr auto; /* Définit 3 rangées : en-tête, contenu principal, pied de page */
+}
+
+a {
+  text-decoration: none; /* Supprime le soulignement par défaut des liens */
+  color: black; /* Définit la couleur des liens en noir */
+}
+
+a:hover {
+  color: #F5EBE0; /* Change la couleur du lien au survol */
+}
+
+a:active {
+  color: black; /* Définit la couleur du lien lorsqu'il est activé (cliqué) */
+}
+
+.cgv {
+  font-family: Arial, Helvetica, sans-serif; /* Police spécifique pour la classe cgv */
+}
+
+.copyright {
+  font-family: "Junction", cursive; /* Police spécifique pour la classe copyright */
+}
+
+.head_text {
+  background-color: #e3d5ca; /* Couleur de fond Marron clair pour la classe head_text */
+}
+
+.F5EBE0 {
+  background-color: #f5ebe0; /* Couleur de fond Pêche clair pour la classe F5EBE0 */
+}
+
+input,
+textarea {
+  border: 1px solid #000000; /* Ajoute une bordure noire aux champs de saisie et zones de texte */
+}
+
+.formulaire {
+  background-color: #f5ebe0; /* Couleur de fond Pêche clair pour la classe formulaire */
+}
+
+.table {
+  --bs-table-bg: none !important; /* Supprime la couleur de fond par défaut des "table" Bootstrap  pour pouvoir y incorporer mes couleurs de fond*/
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td,
+.table-striped > tbody > tr:nth-of-type(odd) > th {
+  --bs-table-accent-bg: transparent; /* Supprime la couleur de fond alternée des lignes impaires pour pouvoir y incorporer mes couleurs*/
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  --bs-table-hover-bg: transparent; /* Supprime la couleur de fond au survol des lignes pour pouvoir y incorporer mes couleurs*/
+}
+
+/* Styles pour la liste non ordonnée dans #singleGallery */
+#singleGallery ul {
+  display: flex; /* Utilise un conteneur flexible */
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+  justify-content: center; /* Centre les éléments horizontalement */
+  height: auto; /* Assure que la hauteur est automatique */
+}
+
+/* Styles pour les éléments de liste dans #singleGallery */
+#singleGallery li {
+  display: flex; /* Utilise un conteneur flexible pour chaque élément li */
+  justify-content: center; /* Centre le contenu horizontalement dans chaque li */
+  align-items: center; /* Centre le contenu verticalement dans chaque li */
+}
+
+/* Styles pour la modal (fenêtre pop-up) */
+.modal_img {
+  display: none; /* Cache la modal par défaut */
+  position: fixed; /* Fixe la position de la modal par rapport à la fenêtre du navigateur */
+  z-index: 900; /* Assure que la modal est au-dessus des autres éléments */
+  padding-top: 100px; /* Ajoute un espace en haut de la modal */
+  left: 0; /* Aligne la modal à gauche de la fenêtre */
+  top: 0; /* Aligne la modal en haut de la fenêtre */
+  width: 100%; /* Fait occuper toute la largeur de la fenêtre à la modal */
+  height: 100%; /* Fait occuper toute la hauteur de la fenêtre à la modal */
+  overflow: auto; /* Cache tout débordement */
+  background-color: rgba(0, 0, 0, 0.9); /* Fond semi-transparent noir */
+}
+
+/* Styles pour le contenu de la modal */
+.modal_img .modal-content {
+  z-index: 980; /* Place l'élément au-dessus des autres éléments avec un z-index inférieur */
+  position: relative; /* Assure que les éléments enfants positionnés absolument sont relatifs à cet élément */
+  top: 50%; /* Place le haut de l'image à 50% de la hauteur de la modal */
+  left: 50%; /* Place la gauche de l'image à 50% de la largeur de la modal */
+  transform: translate(-50%, -50%); /* Centre l'image parfaitement */
+  max-width: 90%; /* Limite la largeur maximale à 90% de la modal */
+  max-height: 90%; /* Limite la hauteur maximale à 90% de la modal */
+  width: auto; /* Largeur automatique basée sur la hauteur */
+  height: auto; /* Hauteur automatique basée sur la largeur */
+  object-fit: contain; /* Assure que l'image conserve ses proportions */
+}
+
+/* Styles pour les bouton de fermeture de la modal */
+.close {
+  position: absolute; /* Positionne le bouton de fermeture de manière absolue */
+  top: 15px; /* Place le bouton à 15px du haut */
+  right: 35px; /* Place le bouton à 35px de la droite */
+  color: #f1f1f1; /* Couleur du texte blanc cassé */
+  font-size: 40px; /* Taille de la police */
+  font-weight: bold; /* Police en gras */
+  transition: 0.3s; /* Ajoute une transition douce pour les changements */
+}
+
+/* Styles pour le survol et le focus du bouton de fermeture */
+.close:hover,
+.close:focus {
+  color: #bbb; /* Change la couleur au survol/focus */
+  text-decoration: none; /* Supprime la décoration du texte */
+  cursor: pointer; /* Change le curseur en pointeur */
+}/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Nuancier de couleurs */
+:root {
+  --gris-pale: #EDEDE9;
+  --gris-beige: #D6CCC2;
+  --peche-clair: #F5EBE0;
+  --marron-clair: #E3D5CA;
+  --marron-rose: #D5BDAF;
+}
+
+/* Styles de base */
+html, body {
+  background-color: var(--peche-clair);
+  font-family: "Junction", cursive;
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* Styles des liens */
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: var(--marron-rose);
+}
+
+a:active {
+  color: black;
+}
+
+/* Classes utilitaires */
+.bg-danger {
+  background-color: var(--marron-rose) !important;
+  color: red;
+}
+
+.cgv {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.copyright {
+  font-family: "Junction", cursive;
+}
+
+.head_text {
+  background-color: var(--marron-clair);
+}
+
+.F5EBE0 {
+  background-color: var(--peche-clair);
+}
+
+.formulaire {
+  background-color: var(--peche-clair);
+}
+
+/* Styles des formulaires */
+input, textarea {
+  border: 1px solid #000000;
+}
+
+/* Surcharge des styles Bootstrap */
+.table {
+  --bs-table-bg: none !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td,
+.table-striped > tbody > tr:nth-of-type(odd) > th {
+  --bs-table-accent-bg: transparent;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  --bs-table-hover-bg: transparent;
+}
+
+/* Styles de la galerie */
+#singleGallery ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: auto;
+}
+
+#singleGallery li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles de la modal */
+.modal_img {
+  display: none;
+  position: fixed;
+  z-index: 900;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal_img .modal-content {
+  z-index: 980;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Boutons de navigation de la modal */
+.close, .prev, .next {
+  position: absolute;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close {
+  top: 15px;
+  right: 35px;
+}
+
+.close:hover, .close:focus {
+  color: #bbb;
+  text-decoration: none;
+}
+
+.prev, .next {
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Bouton de démarrage du diaporama */
+#startSlideshow {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Styles des images */
+.img-thumbnail {
+  border: 2px solid white;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  user-select: none;
+}
+
+img {
+  z-index: 800;
+  position: relative;
+  user-select: none;
+}
+
+/* Styles du filigrane */
+#watermark {
+  position: absolute;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4em;
+  color: rgba(253, 8, 8, 0.571);
+  pointer-events: none;
+  user-select: none;
+  max-width: 100%;
+  word-wrap: break-word;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+/* Styles pour les photos existantes */
+.existing-photos {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.existing-photos .photo-item {
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+}
+
+/* Classe utilitaire pour les coins arrondis */
+.custom-rounded {
+  border-radius: 0.25rem !important;
+}

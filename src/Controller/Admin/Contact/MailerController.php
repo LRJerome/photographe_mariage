@@ -17,6 +17,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Mime\Address;
 
 // Ma classe MailerController hérite de AbstractController pour avoir accès à plein de fonctionnalités Symfony
 class MailerController extends AbstractController
